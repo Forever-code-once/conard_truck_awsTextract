@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Example playlist</title>
+    <item>
+      <title>Video #1</title>
+      <description>First video.</description>
+      <media:content url="1.flv" duration="5" />
+      <media:thumbnail url="1.jpg" />
+    </item>
+    <item>
+      <title>Video #2</title>
+      <description>Second video.</description>
+      <media:content url="2.flv" duration="5" />
+      <media:thumbnail url="2.jpg" />
+    </item>
+  </channel>
+</rss>

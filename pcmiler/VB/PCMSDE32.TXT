@@ -1,0 +1,1197 @@
+VERSION 5.00
+Begin VB.Form Form1 
+   Appearance      =   0  'Flat
+   BackColor       =   &H80000005&
+   Caption         =   "PC*MILER Server Test"
+   ClientHeight    =   7590
+   ClientLeft      =   1095
+   ClientTop       =   1485
+   ClientWidth     =   9660
+   BeginProperty Font 
+      Name            =   "MS Sans Serif"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   700
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   ForeColor       =   &H80000008&
+   LinkTopic       =   "Form1"
+   PaletteMode     =   1  'UseZOrder
+   ScaleHeight     =   7590
+   ScaleWidth      =   9660
+   Begin VB.CommandButton Test 
+      Caption         =   "Test"
+      Height          =   855
+      Left            =   7560
+      TabIndex        =   7
+      Top             =   360
+      Width           =   1815
+   End
+   Begin VB.ListBox List1 
+      Height          =   5910
+      Left            =   240
+      TabIndex        =   6
+      Top             =   1440
+      Width           =   9135
+   End
+   Begin VB.CommandButton CalcTrip 
+      Appearance      =   0  'Flat
+      Caption         =   "Calc Miles"
+      Height          =   495
+      Left            =   3480
+      TabIndex        =   0
+      Top             =   720
+      Width           =   1215
+   End
+   Begin VB.TextBox Text1 
+      Appearance      =   0  'Flat
+      Height          =   495
+      Left            =   360
+      MultiLine       =   -1  'True
+      TabIndex        =   1
+      Top             =   720
+      Width           =   2655
+   End
+   Begin VB.Label Label6 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      Caption         =   "0 minutes"
+      ForeColor       =   &H80000008&
+      Height          =   255
+      Left            =   5040
+      TabIndex        =   5
+      Top             =   1080
+      Width           =   1935
+   End
+   Begin VB.Label Label5 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      Caption         =   "Click button for total miles and duration from Princeton, NJ to Chicago, IL"
+      ForeColor       =   &H80000008&
+      Height          =   495
+      Left            =   3480
+      TabIndex        =   4
+      Top             =   120
+      Width           =   3495
+   End
+   Begin VB.Label Label4 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      Caption         =   "0 miles"
+      ForeColor       =   &H80000008&
+      Height          =   255
+      Left            =   5040
+      TabIndex        =   3
+      Top             =   600
+      Width           =   1935
+   End
+   Begin VB.Label Label2 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      Caption         =   "Click in edit field below for the best match for 'PRINCE* NJ'"
+      ForeColor       =   &H80000008&
+      Height          =   375
+      Left            =   360
+      TabIndex        =   2
+      Top             =   240
+      Width           =   2775
+   End
+End
+Attribute VB_Name = "Form1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+
+'***************************************************
+' GLOBAL VARIABLES
+'***************************************************
+Dim serverID As Integer
+
+
+'***************************************************
+' EVENT FUNCTIONS:
+'***************************************************
+Private Sub CalcTrip_Click()
+        Dim hours As Long
+        Dim miles As Single
+        
+        miles = PCMSCalcDistance3(serverID, Testplace1, "Chicago, IL", CALC_PRACTICAL, hours) / 10#
+        
+        Label4.Caption = CStr(miles) & " miles"
+        Label6.Caption = CStr(hours) & " minutes"
+        
+        
+End Sub
+
+
+Private Sub Form_Load()
+        Dim l As Integer
+        Dim buffer As String
+
+        ' Set debugging level (0 = none, 2 = all)
+        ' l = PCMSSetDebug(0)
+
+        ' Start the PCM DLL and store server ID
+        serverID = PCMSOpenServer(0, 0)
+
+        If 0 = serverID Then
+            buffer = String(255, Chr(0))
+            l = PCMSGetErrorString(PCMSGetError(), buffer, Len(buffer))
+            MsgBox buffer
+        End If
+
+        
+End Sub
+
+
+Private Sub Form_Unload(Cancel As Integer)
+        ' Shut down the DLL, using the global server ID
+        If 0 <> serverID Then
+        retCode = PCMSCloseServer(serverID)
+        serverID = 0
+        End If
+End Sub
+
+
+Private Sub Report_Click()
+    Dim buffer As String * 100
+    Dim temp As String
+    Dim miles As Single
+    Dim tripID As Long
+    Dim ret As Integer
+    Dim l As Integer
+
+    ' Create a new trip
+    tripID = PCMSNewTrip(serverID)
+
+    ' Add stops to the trip
+    ret = PCMSAddStop(tripID, "Princeton, NJ")
+    ret = PCMSAddStop(tripID, "Chicago, IL")
+    
+    ' Calculate the best route for this trip
+    miles = PCMSCalculate(tripID) / 10#
+
+    ' Build the report into Grid1
+    ret = PCMSNumRptLines(tripID, RPT_DETAIL)
+    If 0 < ret Then
+        For i% = 0 To (ret - 1)
+        ' Get a single line from report (columns are tab delimited)
+        l = PCMSGetRptLine(tripID, RPT_DETAIL, i%, buffer, Len(buffer))
+        buffer = Trim(buffer)
+        MsgBox (buffer)
+        ' Convert the report line to Basic from 'C' form
+        ' temp = CToBas(buffer)
+               
+        Next i%
+    End If
+
+    ' Delete the trip
+    PCMSDeleteTrip tripID
+
+End Sub
+
+Private Sub Test_Click()
+
+    Dim miles
+    Dim buflen As Integer
+    buflen = 1080
+    Dim buffer As String * 1080
+    
+    Dim Testplace1 As String
+    Testplace1 = "Edmonton, AB"
+    Dim Testplace2 As String
+    Testplace2 = "Calgary, AB"
+    Dim Testplace3 As String
+    Testplace3 = "Princeton, NJ"
+    Dim Testplace4 As String
+    Testplace4 = "Chicago, IL"
+    Dim Testplace5 As String
+    Testplace5 = "Trenton, NJ"
+    Dim Testplace6 As String
+    Testplace6 = "San Diego, CA"
+    Dim Testplace7 As String
+    Testplace7 = "Portland, OR"
+    Dim Testplace8 As String
+    Testplace8 = "Seattle, WA"
+    Dim Testplace9 As String
+    Testplace9 = "Denver, CO"
+    Dim Testplace10 As String
+    Testplace10 = "Aiea, HI"
+    Dim Testplace11 As String
+    Testplace11 = "Akona, HI"
+    Dim Testplace12 As String
+    Testplace12 = "Santa Ana, PR"
+    Dim Testplace13 As String
+    Testplace13 = "San Juan, PR"
+    Dim lookupplace As String
+    lookupplace = "PRI*, NJ"
+    Dim borderstop1 As String
+    borderstop1 = "Detroit, MI"
+    Dim borderstop2 As String
+    borderstop2 = "Buffalo, NY"
+    Dim ferrystop1 As String
+    ferrystop1 = "Boston, MA"
+    Dim ferrystop2 As String
+    ferrystop2 = "Nantucket, MA"
+    Dim reseqstop1 As String
+    reseqstop1 = "Princeton, NJ"
+    Dim reseqstop2 As String
+    reseqstop2 = "Boston, MA"
+    Dim reseqstop3 As String
+    reseqstop3 = "Hartford, CT"
+    Dim reseqstop4 As String
+    reseqstop4 = "Manchester, NH"
+    Dim avoidplace As String
+    avoidplace = "ALK, NJ"
+    Dim wrongplace1 As String
+    wrongplace1 = "Princeton, NV"
+    Dim wrongplace2 As String
+    wrongplace2 = "Princeto, NJ"
+    Dim wrongplace3 As String
+    wrongplace3 = "Princeto, zz"
+    Dim wrongplace4 As String
+    wrongplace4 = "Pri*, zz"
+    Dim wrongplace5 As String
+    wrongplace5 = "abrakadabra, nj"
+    Dim wrongplace6 As String
+    wrongplace6 = "99999"
+    Dim alias As String
+    alias = "Makaka"
+    Dim testzip1 As String
+    testzip1 = "92014"
+    Dim testzip2 As String
+    testzip2 = "92020"
+    Dim latlong1 As String
+    latlong1 = "0402515n,0743340w"
+    Dim latlong2 As String
+    latlong2 = "40.421n,74.561w"
+    Dim latlong3 As String
+    latlong3 = "52.5n,92.5w"
+    Dim llplace As String
+    llplace = "Princeton, NJ"
+    Dim hazplace1 As String
+    hazplace1 = "59758"
+    Dim hazplace2 As String
+    hazplace2 = "Bozeman Hot Springs, MT"
+    Dim splc1 As String
+    splc1 = "SPLC568110000"
+    Dim splc2 As String
+    splc2 = "SPLC874430251"
+    Dim splccity As String
+    splccity = "SPLCBoston, MA"
+    Dim canpost1 As String
+    canpost1 = "M5S 1A1"
+    Dim canpost2 As String
+    canpost2 = "A0A 1A0"
+    
+    Dim eurotestplace1 As String
+    eurotestplace1 = "Moskva, RU"
+    Dim eurotestplace2 As String
+    eurotestplace2 = "Sankt Peterbu, RU"
+    Dim eurotestplace3 As String
+    eurotestplace3 = "Frankfurt, GM"
+    Dim eurotestplace4 As String
+    eurotestplace4 = "Madrid, ES"
+    Dim eurotestplace5 As String
+    eurotestplace5 = "Berlin, GM"
+    Dim eurotestplace6 As String
+    eurotestplace6 = "London, UK"
+    Dim eurotestplace7 As String
+    eurotestplace7 = "Orleans, FR"
+    Dim eurotestplace8 As String
+    eurotestplace8 = "Geneva, SW"
+    Dim eurotestplace9 As String
+    eurotestplace9 = "Roma, IT"
+    Dim eurolookupplace As String
+    eurolookupplace = "FRANK*, GM"
+    Dim euroalias1 As String
+    euroalias1 = "Moscow"
+    Dim eurolatlong1 As String
+    eurolatlong1 = "0485200n,0022200e"
+    Dim eurolatlong2 As String
+    eurolatlong2 = "48.833n,2.333e"
+    Dim eurollplace As String
+    eurollplace = "London, UK"
+    
+    Dim tempStr As String
+    
+    '**********************
+    'run some basic trip calculations using air distance
+    
+    miles = PCMSCalcDistance2(serverID, Testplace3, Testplace4, CALC_AIR) / 10#
+    
+    tempStr = "Air distance from "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace4
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'test some basic trip calculations and travel times using practical distance
+    
+    miles = PCMSCalcDistance3(serverID, Testplace1, Testplace2, CALC_PRACTICAL, hours) / 10#
+    tempStr = "Distance (P) from "
+    tempStr = tempStr + Testplace1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace2
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    tempStr = tempStr + ", "
+    tempStr = tempStr + CStr(hours)
+    tempStr = tempStr + " minutes"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'test with a place that doesn't exist
+    
+    miles = PCMSCalcDistance(serverID, alias, Testplace4) / 10#
+    tempStr = "Distance from (alias) "
+    tempStr = tempStr + alias
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace4
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '***********************
+    'test a trip calculation using zip codes
+                   
+    miles = PCMSCalcDistance(serverID, testzip1, testzip2) / 10#
+    tempStr = "Distance from "
+    tempStr = tempStr + testzip1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + testzip2
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'test a trip using the mode of calculation in above tests
+    
+    miles = PCMSCalcDistance(serverID, Testplace5, Testplace3) / 10#
+    tempStr = "Distance from "
+    tempStr = tempStr + Testplace5
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '***********************
+    'run a simple trip using the default routing calculation type
+    '(note that the distance is returned in 10ths of miles)
+    
+    miles = PCMSCalcDistance(serverID, Testplace3, Testplace4) / 10#
+    tempStr = "Distance from "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace4
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'run a simple trip using the shortest distance calculation
+    
+    miles = PCMSCalcDistance2(serverID, Testplace3, Testplace4, CALC_SHORTEST) / 10#
+    tempStr = "Shortest distance from "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace4
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'run a trip avoiding tolls, and output duration of trip in minutes
+    
+    miles = PCMSCalcDistance3(serverID, Testplace3, Testplace4, CALC_AVOIDTOLL, hours) / 10#
+    tempStr = "Distance (toll) and hours from "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace4
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    tempStr = tempStr + ", "
+    tempStr = tempStr + CStr(hours)
+    tempStr = tempStr + " minutes"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'return latitute and longitude for a place name
+    
+    Dim ret
+    ret = PCMSCityToLatLong(serverID, llplace, buffer, buflen)
+    
+    tempStr = "LatLong for "
+    tempStr = tempStr + llplace
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(buffer)
+    
+    List1.AddItem (tempStr)
+    
+    
+    '**********************
+    'convert latitude and longitude coordinates into a place name
+    
+    ret = PCMSLatLongToCity(serverID, latlong1, buffer, buflen)
+    
+    tempStr = "Placename for "
+    tempStr = tempStr + latlong1
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(buffer)
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'create a new trip
+    
+    Dim shortTrip
+    shortTrip = PCMSNewTrip(server)
+    
+    If shortTrip = 0 Then
+    
+    'if error:
+    
+    ret = PCMSGetErrorString(PCMSGetError(), buffer, buflen)
+    
+    tempStr = "Could not create a trip:"
+    tempStr = tempStr + CStr(buffer)
+    List1.AddItem (tempStr)
+
+    End If
+    
+    '***********************
+    'using the shortest routing:
+    
+    Call PCMSSetCalcType(shortTrip, CALC_SHORTEST)
+    ret = PCMSGetCalcType(shortTrip)
+    
+    tempStr = "Route type: "
+    tempStr = tempStr + CStr(ret)
+
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'run a simple route using set routing
+    
+    miles = PCMSCalcTrip(shortTrip, Testplace3, Testplace6) / 10#
+    tempStr = "Distance (S) from "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace6
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'run a simple route using SPLC
+    
+    miles = PCMSCalcTrip(shortTrip, splc1, splc2) / 10#
+    tempStr = "Distance (S) from "
+    tempStr = tempStr + splc1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + splc2
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'run a route using Canadian Zip Codes
+    
+    miles = PCMSCalcTrip(shortTrip, canpost1, canpost1) / 10#
+    tempStr = "Distance (S) from "
+    tempStr = tempStr + canpost1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + canpost1
+    tempStr = tempStr + " : "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'set up Practical route calculation
+    
+    Call PCMSSetCalcType(shortTrip, CALC_PRACTICAL)
+    
+    miles = PCMSCalcTrip(shortTrip, hazplace1, hazplace2) / 10#
+    tempStr = "Distance (P) from "
+    tempStr = tempStr + hazplace1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + hazplace2
+    tempStr = tempStr + " (no haz): "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    
+    List1.AddItem (tempStr)
+     
+    '**********************
+    'create another new trip
+    
+    Dim pracTrip
+    pracTrip = PCMSNewTrip(server)
+    
+    'error handling:
+    If pracTrip = 0 Then
+    
+    'delete first trip we created:
+    Call PCMSDeleteTrip(shortTrip)
+    tempStr = "could not create a trip: "
+    Call PCMSGetErrorString(PCMSGetError(), buffer, buflen)
+    tempStr = tempStr + CStr(buffer)
+    
+    List1.AddItem (tempStr)
+    
+    End If
+    
+    '********************
+    'use practical routing, convert distance to kilometers
+    
+    Call PCMSSetCalcType(pracTrip, CALC_PRACTICAL)
+    Call PCMSSetKilometers(pracTrip)
+    
+    '********************
+    'make the trip go through Chicago, IL
+    
+    Call PCMSAddStop(pracTrip, Testplace3)
+    Call PCMSAddStop(pracTrip, Testplace4)
+    Call PCMSAddStop(pracTrip, Testplace6)
+    
+    'run the route calculation
+    
+    miles = PCMSCalculate(pracTrip) / 10#
+    tempStr = "Practical route ("
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + ", "
+    tempStr = tempStr + Testplace4
+    tempStr = tempStr + ", "
+    tempStr = tempStr + Testplace6
+    tempStr = tempStr + ") in km: "
+    tempStr = tempStr + CStr(miles)
+    'returns kilometers for this particular test
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'set miles
+    Call PCMSSetMiles(pracTrip)
+    'test cost
+    
+    Call PCMSSetCost(pracTrip, 10)
+    Call PCMSCalculate(pracTrip)
+    miles = PCMSGetCost(pracTrip) / 10#
+    tempStr = "Cost: "
+    tempStr = tempStr + CStr(miles)
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'create another new trip, calculate off-road distance (air)
+    
+    Dim airTrip
+    airTrip = PCMSNewTrip(server)
+    Call PCMSSetCalcType(airTrip, CALC_PRACTICAL)
+    Call PCMSSetOnRoad(airTrip, False)
+    miles = PCMSCalcTrip(airTrip, latlong1, latlong3) / 10#
+    tempStr = "Practical route ("
+    tempStr = tempStr + latlong1
+    tempStr = tempStr + "), ("
+    tempStr = tempStr + latlong3
+    tempStr = tempStr + "), "
+    tempStr = tempStr + " (off road): "
+    tempStr = tempStr + CStr(miles)
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'new trip, calculate distance between same 2 places, on road.
+    
+    Dim airTrip1
+    airTrip1 = PCMSNewTrip(server)
+    Call PCMSSetCalcType(airTrip1, CALC_PRACTICAL)
+    Call PCMSSetOnRoad(airTrip1, True)
+    miles = PCMSCalcTrip(airTrip1, latlong1, latlong3) / 10#
+    tempStr = "Practical route ("
+    tempStr = tempStr + latlong1
+    tempStr = tempStr + "), ("
+    tempStr = tempStr + latlong3
+    tempStr = tempStr + "), "
+    tempStr = tempStr + " (on road): "
+    tempStr = tempStr + CStr(miles)
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'show detailed driving instructions for the route just run
+    'note: the first line is line 0, the buffer should be >100 char.
+    
+    tempStr = "*****************************************"
+    List1.AddItem (tempStr)
+    
+    Dim i%
+    ret = PCMSNumRptLines(pracTrip, RPT_DETAIL)
+    If 0 < ret Then
+    For i% = 0 To (ret - 1)
+    miles = PCMSGetRptLine(pracTrip, RPT_DETAIL, i%, buffer, buflen)
+    tempStr = CStr(buffer)
+    List1.AddItem (tempStr)
+    Next i%
+    End If
+    
+    '**********
+    'show the trip's state by state mileage breakdown, in driving order
+    'note: using the returned pointer directly in the printf
+    
+    Call PCMSSetAlphaOrder(pracTrip, False)
+    tempStr = "*****************************************"
+    List1.AddItem (tempStr)
+    'only one declaration of i% is necessary, it is declared above
+    ret = PCMSNumRptLines(pracTrip, RPT_STATE)
+    If 0 < ret Then
+    For i% = 0 To (ret - 1)
+    miles = PCMSGetRptLine(pracTrip, RPT_STATE, i%, buffer, buflen)
+    tempStr = CStr(buffer)
+    List1.AddItem (tempStr)
+    Next i%
+    End If
+    
+    Call PCMSSetAlphaOrder(pracTrip, True)
+    tempStr = "*****************************************"
+    List1.AddItem (tempStr)
+    
+    ret = PCMSNumRptLines(pracTrip, RPT_STATE)
+    If 0 < ret Then
+    For i% = 0 To (ret - 1)
+    miles = PCMSGetRptLine(pracTrip, RPT_STATE, i%, buffer, buflen)
+    tempStr = CStr(buffer)
+    List1.AddItem (tempStr)
+    Next i%
+    End If
+    
+    tempStr = "*****************************************"
+    List1.AddItem (tempStr)
+    
+    '**********************
+    '**********************
+    'show the trip's leg by leg mileage breakdown
+    
+    ret = PCMSNumRptLines(pracTrip, RPT_MILEAGE)
+    If 0 < ret Then
+    For i% = 0 To (ret - 1)
+    miles = PCMSGetRptLine(pracTrip, RPT_MILEAGE, i%, buffer, buflen)
+    tempStr = CStr(buffer)
+    List1.AddItem (tempStr)
+    Next i%
+    End If
+    
+    
+    '*********************
+    'using the current settings, run a different trip
+    
+    miles = PCMSCalcDistance(server, Testplace10, Testplace11) / 10#
+    tempStr = "distance from "
+    tempStr = tempStr + Testplace10
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace11
+    tempStr = tempStr + ": "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    List1.AddItem (tempStr)
+    
+    'if error:
+    
+    If miles < 0 Then
+    Call PCMSGetErrorString(PCMSGetError(), buffer, buflen)
+    List1.AddItem (buffer)
+    End If
+    
+    '********************
+    'using shortest route calculation
+    
+    Call PCMSSetCalcType(shortTrip, CALC_SHORTEST)
+    miles = PCMSCalcTrip(shortTrip, Testplace3, Testplace12) / 10#
+    tempStr = "distance from "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace12
+    tempStr = tempStr + ": "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    List1.AddItem (tempStr)
+    
+    'if error:
+    
+    If miles < 0 Then
+    Call PCMSGetErrorString(PCMSGetError(), buffer, buflen)
+    List1.AddItem (buffer)
+    End If
+    
+    '**********************
+    'run another trip using set route calculation
+    
+    miles = PCMSCalcTrip(shortTrip, Testplace3, Testplace4) / 10#
+    tempStr = "distance from "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " to "
+    tempStr = tempStr + Testplace4
+    tempStr = tempStr + ": "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    List1.AddItem (tempStr)
+    
+    'if error:
+    
+    If miles < 0 Then
+    Call PCMSGetErrorString(PCMSGetError(), buffer, buflen)
+    List1.AddItem (buffer)
+    End If
+    
+    '*********************
+    'delete the stops and add new ones
+    
+    Call PCMSClearStops(pracTrip)
+    Call PCMSAddStop(pracTrip, Testplace7)
+    Call PCMSAddStop(pracTrip, Testplace8)
+    Call PCMSAddStop(pracTrip, Testplace9)
+    Call PCMSSetKilometers(pracTrip)
+    
+    'calculate the distance in kilometers:
+    
+    ret = PCMSCalculate(pracTrip) / 10#
+    tempStr = "Distance between "
+    tempStr = tempStr + Testplace7
+    tempStr = tempStr + ", "
+    tempStr = tempStr + Testplace8
+    tempStr = tempStr + ", "
+    tempStr = tempStr + Testplace9
+    tempStr = tempStr + " (Practical KM): "
+    tempStr = tempStr + CStr(ret)
+    
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'test resequence through all
+    
+    Call PCMSSetMiles(pracTrip)
+    Call PCMSClearStops(pracTrip)
+    Call PCMSAddStop(pracTrip, reseqstop1)
+    Call PCMSAddStop(pracTrip, reseqstop2)
+    Call PCMSAddStop(pracTrip, reseqstop3)
+    'its possible to add more stops
+    Call PCMSSetResequence(pracTrip, True)
+    Call PCMSOptimize(pracTrip)
+    
+    tempStr = "******Optimized trip****** "
+    List1.AddItem (tempStr)
+   
+    Dim numStops As Integer
+    numStops = PCMSNumStops(pracTrip)
+    Dim sNum As Integer
+    
+    For sNum% = 0 To (numStops - 1)
+    miles = PCMSGetStop(pracTrip, sNum%, buffer, buflen)
+    List1.AddItem (buffer)
+    Next sNum%
+    
+    '*********************
+    'test resequence destination fixed
+    
+    Call PCMSClearStops(pracTrip)
+    Call PCMSAddStop(pracTrip, reseqstop1)
+    Call PCMSAddStop(pracTrip, reseqstop2)
+    Call PCMSAddStop(pracTrip, reseqstop3)
+    Call PCMSAddStop(pracTrip, reseqstop4)
+    Call PCMSSetResequence(pracTrip, False)
+    Call PCMSOptimize(pracTrip)
+    
+    tempStr = "******Optimized trip******"
+    List1.AddItem (tempStr)
+    
+    numStops = PCMSNumStops(pracTrip)
+    
+    For sNum% = 0 To (numStops - 1)
+    miles = PCMSGetStop(pracTrip, sNum%, buffer, buflen)
+    List1.AddItem (buffer)
+    Next sNum%
+    
+    '********************
+    'test Hub mode
+    
+    Call PCMSSetHubMode(pracTrip, True)
+    miles = PCMSCalculate(pracTrip) / 10#
+    tempStr = "Hub Mode distance: "
+    tempStr = tempStr + CStr(miles)
+    tempStr = tempStr + " miles"
+    List1.AddItem (tempStr)
+    Call PCMSSetHubMode(pracTrip, False)
+    
+    '*********************
+    'test break hours
+    
+    hours = PCMSGetBreakHours(pracTrip)
+    tempStr = "Break time (min): "
+    tempStr = tempStr + CStr(hours)
+    List1.AddItem (tempStr)
+    
+    hours = PCMSGetBreakWaitHours(pracTrip)
+    tempStr = "Break time (min): "
+    tempStr = tempStr + CStr(hours)
+    List1.AddItem (tempStr)
+    
+    Call PCMSCalculate(pracTrip)
+   
+    hours = PCMSGetDuration(pracTrip)
+    tempStr = "Trip time (min): "
+    tempStr = tempStr + CStr(hours)
+    List1.AddItem (tempStr)
+    
+    Call PCMSSetBreakHours(pracTrip, 120)
+    Call PCMSSetBreakWaitHours(pracTrip, 120)
+    Call PCMSCalculate(pracTrip)
+    
+    hours = PCMSGetDuration(pracTrip)
+    tempStr = "New trip time (min): "
+    tempStr = tempStr + CStr(hours)
+    tempStr = tempStr + " "
+    List1.AddItem (tempStr)
+    
+    '********************
+    'test borders options (borders open)
+    
+    Call PCMSClearStops(pracTrip)
+    
+    Call PCMSAddStop(pracTrip, borderstop1)
+    Call PCMSAddStop(pracTrip, borderstop2)
+    Call PCMSSetBordersOpen(pracTrip, True)
+    
+    miles = PCMSCalculate(pracTrip) / 10#
+    tempStr = borderstop1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + borderstop2
+    tempStr = tempStr + ", borders open: "
+    tempStr = tempStr + CStr(miles)
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'test borders option (borders closed)
+    
+    Call PCMSSetBordersOpen(pracTrip, False)
+    
+    miles = PCMSCalculate(pracTrip) / 10#
+    tempStr = borderstop1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + borderstop2
+    tempStr = tempStr + ", borders closed: "
+    tempStr = tempStr + CStr(miles)
+    List1.AddItem (tempStr)
+    
+    '***********************
+    'test ferry distance option (ferry on)
+    
+    Call PCMSClearStops(pracTrip)
+    Call PCMSAddStop(pracTrip, ferrystop1)
+    Call PCMSAddStop(pracTrip, ferrystop2)
+    Call PCMSSetShowFerryMiles(pracTrip, True)
+    
+    miles = PCMSCalculate(pracTrip) / 10#
+    tempStr = ferrystop1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + ferrystop2
+    tempStr = tempStr + ", ferry on: "
+    tempStr = tempStr + CStr(miles)
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'test ferry option (ferry off)
+    
+    Call PCMSSetShowFerryMiles(pracTrip, False)
+    
+    miles = PCMSCalculate(pracTrip) / 10#
+    tempStr = ferrystop1
+    tempStr = tempStr + " to "
+    tempStr = tempStr + ferrystop2
+    tempStr = tempStr + ", ferry off: "
+    tempStr = tempStr + CStr(miles)
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'test avoid/favor
+    
+    Call PCMSClearStops(pracTrip)
+    Call PCMSAddStop(pracTrip, Testplace3)
+    Call PCMSAddStop(pracTrip, avoidplace)
+    miles = PCMSCalculate(pracTrip) / 10#
+    tempStr = "Normal distance from "
+    tempStr = tempStr + Testplace3
+    tempStr = tempStr + " to "
+    tempStr = tempStr + avoidplace
+    tempStr = tempStr + ": "
+    tempStr = tempStr + CStr(miles)
+    List1.AddItem (tempStr)
+    
+    '**********************
+    '**********************
+
+    'create new trip
+    
+    Dim trip
+    Dim euroTrip
+    Dim matches As Integer
+    
+    'check a place name without a trip
+    matches = PCMSCheckPlaceName(server, lookupplace)
+    If matches Then
+    tempStr = lookupplace
+    tempStr = tempStr + " exists in the database"
+    List1.AddItem (tempStr)
+    
+    Else
+    tempStr = lookupplace
+    tempStr = tempStr + " does not exist in the database"
+    List1.AddItem (tempStr)
+    End If
+    
+    '**********************
+    'create a new trip
+    
+    trip = PCMSNewTrip(server)
+    
+    If trip <= 0 Then
+    'print the error if we couldn't initialize
+    Call PCMSGetErrorString(PCMSGetError(), buffer, buflen)
+    tempStr = "Error creating trip: "
+    tempStr = tempStr + CStr(buffer)
+    List1.AddItem (tempStr)
+    End If
+    
+    '****************
+    If trip > 0 Then
+    '****************
+    
+    'look up a place name using LatLong
+    matches = PCMSLookup(trip, latlong1, 1)
+    
+        If matches > 0 Then
+        Call PCMSGetFmtMatch(trip, 0, buffer, buflen, 10, 20, 20)
+        tempStr = CStr(buffer)
+        List1.AddItem (tempStr)
+        End If
+        
+    'look up a place name using an alias
+    matches = PCMSLookup(trip, alias1, 1)
+        
+        If matches > 0 Then
+        Call PCMSGetFmtMatch(trip, 0, buffer, buflen, 10, 20, 20)
+        tempStr = CStr(buffer)
+        List1.AddItem (tempStr)
+        End If
+    End If
+    
+        
+    '**************************
+    'look up a specific city: try for an exact match
+    
+    matches = PCMSLookup(trip, lookupplace, 1)
+    tempStr = matches
+    tempStr = tempStr + " (exactly) matching cities to "
+    tempStr = tempStr + lookupplace
+    List1.AddItem (tempStr)
+    
+    If matches Then
+    Call PCMSGetMatch(trip, 0, buffer, 100)
+    List1.AddItem (buffer)
+    End If
+    
+    '*********************
+    'lookup a specific city: try to look for an exact match
+    
+    matches = PCMSLookup(trip, lookupplace, 2)
+    tempStr = matches
+    tempStr = tempStr + " matching (by default) cities to "
+    tempStr = tempStr + lookupplace
+    List1.AddItem (tempStr)
+    
+    If matches Then
+    Call PCMSGetMatch(trip, 0, buffer, 100)
+    List1.AddItem (buffer)
+    End If
+    
+    '**********************
+    'lookup all cities that match: i is the number of matches
+    
+    matches = PCMSLookup(trip, lookupplace, 0)
+    tempStr = matches
+    tempStr = tempStr + " matching (partially) cities to "
+    tempStr = tempStr + lookupplace
+    List1.AddItem (tempStr)
+    
+    'show all the matches again without the buffer, and using 'matches'
+    
+    If matches Then
+    For i% = 0 To (matches - 1)
+    Call PCMSGetMatch(trip, i%, buffer, buflen)
+    tempStr = ""
+    tempStr = tempStr + CStr(buffer)
+    tempStr = tempStr + ""
+    List1.AddItem (tempStr)
+    Next i%
+    End If
+    
+    '***********************
+    'lookup all cities that match: i is the number of matches
+    
+    matches = PCMSLookup(trip, splccity, 0)
+    tempStr = matches
+    tempStr = tempStr + " matching (partially) cities to "
+    tempStr = tempStr + splccity
+    List1.AddItem (tempStr)
+    
+    'show all the matches again without the buffer, and using 'matches'
+    
+    If matches Then
+    For i% = 0 To (matches - 1)
+    Call PCMSGetMatch(trip, i%, buffer, buflen)
+    tempStr = ""
+    tempStr = tempStr + CStr(buffer)
+    tempStr = tempStr + ""
+    List1.AddItem (tempStr)
+    Next i%
+    End If
+    
+    '***********************
+    'lookup a non-existing city: try for an exact match
+    
+    tempStr = "Lookup a non-existing city "
+    List1.AddItem (tempStr)
+    
+    Dim tmpmsg As String * 1080
+    
+    'exact matches:
+    matches = PCMSLookup(trip, wrongplace1, 1)
+    tempStr = wrongplace1
+    tempStr = tempStr + " -> "
+    tempStr = tempStr + CStr(matches)
+    tempStr = tempStr + " cities matching (exactly), "
+    
+    'partial matches
+    matches = PCMSLookup(trip, wrongplace1, 0)
+    tempStr = tempStr + CStr(matches)
+    tempStr = tempStr + " matching (partially), "
+    
+    'matches by default
+    matches = PCMSLookup(trip, wrongplace1, 2)
+    tempStr = tempStr + CStr(matches)
+    tempStr = tempStr + " matching (by default)"
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'delete the trip
+    
+    Call PCMSDeleteTrip(trip)
+    
+    '**********************
+    
+    tempStr = "**************************************************"
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'check the number of installed regions
+    
+    Dim numRegions As Integer
+    numRegions = PCMSNumRegions(server)
+    tempStr = "Number of installed regions: "
+    tempStr = tempStr + CStr(numRegions)
+    List1.AddItem (tempStr)
+    
+    While numRegions <> 0
+    Call PCMSGetRegionName(server, numRegions - 1, buffer, buflen)
+    List1.AddItem (buffer)
+    numRegions = numRegions - 1
+    Wend
+    
+    tempStr = " "
+    List1.AddItem (tempStr)
+    
+    '**********************
+    'create a trip in Europe
+    
+    Dim reg As String
+    reg = EUROPE
+    euroTrip = PCMSNewTripWithRegion(server, reg)
+    If euroTrip > 0 Then
+    
+    'lookup all the cities that match: i is the number of matches
+    matches = PCMSLookup(euroTrip, eurolookupplace, 0)
+    tempStr = CStr(matches)
+    tempStr = tempStr + " matching cities to "
+    tempStr = tempStr + eurolookupplace
+    List1.AddItem (tempStr)
+    
+    'show all the matches again without buffer, and using 'matches'
+    For i% = 0 To (matches - 1)
+    Call PCMSGetFmtMatch(euroTrip, i%, buffer, buflen, 10, 5, 4)
+    Call PCMSGetMatch(euroTrip, i%, buffer, buflen)
+    tempStr = "["
+    tempStr = tempStr + CStr(buffer)
+    tempStr = tempStr + "]"
+    Next i%
+    'delete the trip
+    Call PCMSDeleteTrip(euroTrip)
+    
+    Else
+    'print the error if we couldn't initialize
+    tempStr = "Region Europe is not installed"
+    List1.AddItem (tempStr)
+    
+    End If
+    
+    
+End Sub
+
+
+Private Sub Text1_Click()
+        Dim buffer As String * 255
+        Dim temp As String
+        Dim tripID As Long
+        Dim ret As Integer
+        Dim l As Integer
+
+        tripID = PCMSNewTrip(serverID)
+        ret = PCMSLookup(tripID, "PRINCE*, NJ", 1)
+        If 0 < ret Then
+                ' Get the first match (0th element)
+                l = PCMSGetMatch(tripID, 0, buffer, Len(buffer))
+                temp = CToBas(buffer)
+                Text1.Text = temp
+        Else
+                Text1.Text = "No match"
+        End If
+
+        PCMSDeleteTrip tripID
+End Sub
+

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "fine-command-160722",
+  "private_key_id": "d39c6495a8298d1d12a9ae609dd2c78c0de18b6f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC91ohD9HInbfIQ\na0dyXk95Q9zAg4xPmIUHIur9SsKs/jTzZ74eVO4ElDPREKxpM4nj6JjB3ikV64Qu\nqaMVbf52ru1GBtoO8fdFZF1OWLqRCNjx8/HacRFylpHnwDO45EHUjrbmiaBaq4j/\nyKrxAeXa7TJ+lhqYYolJ9woRf2QCTDM6n5X4TpnjVeVEglUlNHNvTo7S/q9lGOzs\neLYWbSfoUmACor2qX4SGxxjlcP+Cpmybwjssvt5/A8Lz1t9lSkTq9TIf2/sYV58S\nILdMox7mASA/KYcLUTJf3N36F2f2gv3tdb82w37F4UIbRpKFjvUTi8t7rfA25oAL\nIYVaEL3zAgMBAAECggEACC1gi0TRUf97aNemKTgExl10+dnwxlD0kf0gEC8TOa5t\ni3qRhu7zncDghoXoV1PAAdA4HEm8jVQqynPGMZseVfBtChIrfG9RzmxnVIOf7bVq\n2uk+JsGuFbiEqm3uDG3QpB5NpJqTDLTM3u++5UjGpOqIvUkr9hpwfX4lseFB5pNc\nn3wJ0FUHQpMqQMgqNilV3FK0lhVL/HISVp95vr8+sbn36JsVMcFVvFPUsyhxd9Vt\nM90B1M2NvXnsNMbnp7mlapGeRvtiEvgOvfzSyOQ8YABPxKnAQej4Sf0mCIFjGetl\nNN5qp83t4IQ1CaEXnxc4AvOMBQnvBNqbNnPJcLRB2QKBgQDzhVtJj6SXNO9aCzdV\nIzTmVAh/7SlDmAbSHOrccmg81/yafLEj/nhINPLWV/frYLV5o03OYmURKgVIF/5l\n9VY2eM1BiJ3nWHuvMB8hsMiL0MJM73gYwA1N8j/8yBhBP4pk9UTW+5cbMfe77vgc\n6ci5mqVYt2V+HeJ+9LjCk9IrzQKBgQDHkO7wJmN+3Pkx57r+tWlghWm0gV3ky+L4\nBBOqdwqAJn4RdszkOmj1nfO5h9ZtEXJCvvE7v28QQPvJx+KXfLZg8tVAEOFNe6cv\ncq+ghEYxH4Vl8vegkEE+kkzN0gPnBui3ak4mgsKuQr4giBELOE8QkD71TFAO0YAN\nr+/MbtpQvwKBgDJBgj5jI4+FACRwDiJG2sLx8rMb6ZkmhbnU9+84uSRdWqczNod8\nG6yjKL5tdx+fXLRWrFb8XWk2Z9KiCQFXqUwikBGHNTcqPpQ/9RzJ1AlusrqX7QwG\njnhYlzX+wWqtx0zghS1szJlzLXIedhvZb3BGZvsxFgP5/OVAceTOBuC9AoGABNqX\nlSu528oQHZCfUbaj238jNQq4d+olmRawS8MddER7aH1VOm/ZQbAXz3loU7rK5qiy\nQVvEncaW2S+NaVXVMcJ2QVqnwDSzukm1z9enxWYY3oPsVfFsRNNWHuNuyN24J03k\nnLcteQOSkEP+9iDme2amwVybzeB2lt6inHxNvw0CgYAWeegtopMJWHrVKkjljFOw\nSsDB878oMRzMd3dO3pKSKFQra9l8rEraLRI9d6XZQpvbLFfKSSV94S9rGzMZZQAV\nGnFx9S3IALVk0yboOkcqsOJNvS38X0DyVP1ePjsDecNrpyHOKtmmHdp0XcbOLnL8\nijCdz5ToZ0gOXKKHrxb5iA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "trucking@fine-command-160722.iam.gserviceaccount.com",
+  "client_id": "116833205790534148958",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/trucking%40fine-command-160722.iam.gserviceaccount.com"
+}

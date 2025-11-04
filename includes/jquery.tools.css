@@ -1,0 +1,90 @@
+.simple_overlay { 
+     
+    /* must be initially hidden */ 
+    display:none; 
+     
+    /* place overlay on top of other elements */ 
+    z-index:10000; 
+     
+    /* styling */ 
+    background-color:#333; 
+    
+     
+    width:475px;     
+    min-height:200px; 
+    border:1px solid #666; 
+     
+    /* CSS3 styling for latest browsers */ 
+    -moz-box-shadow:0 0 90px 5px #000; 
+    -webkit-box-shadow: 0 0 90px #000;     
+} 
+ 
+/* close button positioned on upper right corner */
+.simple_overlay .close { 
+    background-image:url(tools_images/close.png); 
+    position:absolute; 
+    right:-15px; 
+    top:-15px; 
+    cursor:pointer; 
+    height:35px; 
+    width:35px; 
+}
+
+.modal { 
+	background-image:url(../images/overlay_small1.png);
+	background-repeat:no-repeat;
+	display:none; 
+	width:325px; 
+	height:165px;
+	padding:15px; 
+	text-align:left; 
+    font-size:12px;
+} 
+
+.modal_features { 
+	background-color:white;
+	background-repeat:no-repeat;
+	display:none; 
+	width:600px; 
+	height:500px;
+	padding:15px; 
+	text-align:left; 
+	font-size:12px;
+	overflow-y:scroll;
+	border:1px #FFBF00 solid;
+} 
+
+.modal_videos {
+	background-color:white;
+	background-repeat:no-repeat;
+	display:none; 
+	width:675px; 
+	height:380px;
+	padding:15px; 
+	text-align:left; 
+	font-size:12px;
+	border:1px #FFBF00 solid;
+}
+
+#attachment_modal {
+	background-color:white;
+	background-repeat:no-repeat;
+	display:none; 
+	width:500px; 
+	height:300px;
+	padding:15px; 
+	text-align:left; 
+	font-size:12px;
+	border:1px black solid;
+	overflow-y:scroll;
+}
+#attachment_modal .close { 
+    background-image:url(tools_images/close.png); 
+    position:absolute; 
+    right:0px; 
+    top:-5px; 
+    cursor:pointer; 
+    height:35px; 
+    width:35px; 
+    z-index:50000;
+}

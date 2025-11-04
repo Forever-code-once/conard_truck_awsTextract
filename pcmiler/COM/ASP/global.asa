@@ -1,0 +1,11 @@
+<Script Language=VBScript RUNAT=Server>
+Sub Application_OnStart
+set g_pcmsrv=Server.CreateObject("PCMServer.PCMServer")
+set application("g_pcmsrv") = g_pcmsrv
+End Sub
+
+Sub Application_Onend
+Set application("g_pcmsrv")=Nothing
+End Sub
+
+</Script>

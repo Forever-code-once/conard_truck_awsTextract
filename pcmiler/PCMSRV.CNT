@@ -1,0 +1,82 @@
+:Base pcmsrv.hlp
+1 PC*MILER Product License Agreement=PC_MILER_End_User_License_Agreement
+1 What's New in Version 22?=What_s_New_in_Version_22_
+1 Introduction
+2 Welcome=About_PCMILER_Server
+2 System Requirements=System_Requirements
+2 Licensing=Licensing
+2 Technical Support=Software_Registration_and_Technical_Support
+2 Printing the User's Guide=Printing_the_User_s_Guide
+1 Overview and Basic Concepts
+2 Introduction=Basic_Concepts
+2 Server Engine and Trips=Trips_and_Servers
+2 Stops=Stops
+2 Example: Simple Distance Calculation=Example_Simple_Distance_Calculation
+2 Example: Building a Trip=Example_Building_a_Trip
+2 Entering Lat/Longs as Stops=Entering_Latitude_Longitude_Points_as_Stops
+2 Reports=Reports
+2 Trip Options=Trip_Options
+2 PCMSERVE.INI for Defaults=PCMSERVE_INI_file
+2 Debugging the Installation=Debugging_the_Installation
+1 Using the PC*MILER|Connect API
+2 Introduction=Using_PC_MILER_API
+2 Initialization and Cleanup=Initialization_and_Cleanup
+2 Simple Distance Calculation=Simple_Distance_Calculation
+2 Accessing Trip Options and Features=Accessing_Trip_Options_and_Features
+2 Getting Toll Costs=Getting_Toll_Costs
+2 Managing Stops=Managing_Stops
+2 Validating City Names=Validating_City_Names
+2 Validating Addresses=Validating_Addresses
+2 State/Country Lists=State_Country_Lists
+2 SPLC Codes As Stops=Using_SPLC_Codes_As_Stops
+2 Translating Lat/Longs to Places=Translating_Between_Latitude_Longitudes_and_Places
+2 Route Options=Changing_Options
+2 Getting Location Information=Getting_Location_Information
+2 Location Radius Search=Location_Radius_Search
+2 Getting Trip Leg Information=Getting_Trip_Leg_Information
+2 Air Distance=Calculating_Air_Distance
+2 Reports - Generating and Retrieving=Generating_and_Retrieving_Reports
+2 Loaded or Empty=Marking_Stops_as_Loaded_or_Empty
+2 Optimizing the Stop Sequence=Optimizing_the_Stop_Sequence
+2 Fuel Optimization=Fuel_Optimization
+2 Hub Routing=Hub_Routing
+2 Tracking Equipment on Roads=Tracking_Equipment_on_Roads
+2 Favoring Major Roads=Favoring_Major_Roads
+2 Avoiding, Favoring, and Overriding Roads=Avoiding_and_Favoring_Roads_from_Within_the_Server
+2 Hazardous Routing=Enabling_Hazardous_Routing_from_Your_Application
+2 LatLong Conversion=Converting_Lat_Longs_to_Trip_Information_for_PC_MILER_FuelTax
+2 Custom Places=Using_Custom_Places
+2 Custom Routing=Using_Custom_Routing
+2 Error Handling=Error_Handling
+2 Performance Tips=Performance_Tips
+2 Cache Management Functions=Cache_Management_Functions
+1 Using Connect from 'C'
+2 Using Connect from 'C'=Using_PC_MILER_Connect_from_C_
+1 Using Connect from Visual Basic
+2 Using Connect from Visual Basic=Using_PC_MILER_Server_from_Visual_Basic
+1 Using Connect from Microsoft Access
+2 About...=Using_PC_MILER_Server_from_Microsoft_Access
+2 About accdem32.mdb=About_accdemo.mdb
+2 Using AutoExec Macro=Using_AutoExec_Macro
+2 Using the Library DB to Access the PCMSRV32 DLL from MS Access=Using_the_Library_Database_to_Access_the_PCMSERVE_DLL_from_Any_Microsoft_Access_16_Bit_Application
+1 Reference
+2 Constants and Error Codes=Constants_and_Error_Codes
+2 TCP/IP Interface=TCP_IP_Interface
+2 'C' Function Declarations
+3 About...=C_Function_Declarations
+3 Startup Functions=Startup_Functions
+3 Simple Interface Functions=Simple_Interface
+3 Complex Interface Functions=Complex_Interface
+3 Report Data Functions=Report_Data
+3 Option Functions=Options
+1 Troubleshooting
+2 Performance Tips=Performance_Tips
+2 Performance Issues Related to Custom Places=Performance_Issues_Related_to_Custom_Places
+2 Using the Connect Tester=Using_the_Connect_Tester
+2 'Cannot find PCMSRV32.DLL'=Running_Your_Application_Generates_the_Error_Cannot_find_PCMSERVE.DLL
+2 'Cannot Find the INI File'=PC_MILER_Server_Cannot_Find_the_INI_File
+2 Changing the INI File Has No Effect=Making_Changes_to_the_INI_File_Has_No_Effect
+2 Problems Optimizing a List of Stops=Problems_Optimizing_a_List_of_Stops
+2 Pcmserver Object Not Found=Pcmserver_Object_Not_Found
+2 Mileage Discrepancies with PC*MILER|Streets=Mileage_Discrepancies_with_PC_MILER_Streets
+s

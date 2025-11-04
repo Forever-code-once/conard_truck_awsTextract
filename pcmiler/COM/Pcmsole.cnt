@@ -1,0 +1,20 @@
+:Base pcmsole.hlp
+1 Using the PC*MILER COM Interface
+2 About...=Using_the_PC_MILER_Connect_COM_Interface
+2 List of Objects=List_of_Objects
+2 Relationships of Objects=Relationships_of_Objects
+2 Properties and Methods - by Object
+3 Server Object Properties and Methods=Server_Object_Properties_and_Methods
+3 Trip Object Properties and Methods=Trip_Object_Properties_and_Methods
+3 PickList Object Properties and Methods=PickList_Properties_and_Methods
+3 Report Object Properties and Methods=Report_Object_Properties_and_Methods
+3 HTMLReport Object Properties and Methods=HTMLReport_Object_Properties_and_Methods
+3 ReportData Object Properties and Methods=ReportData_Object_Properties_and_Methods
+3 Segment Object Properties and Methods=Segment_Object_Properties_and_Methods
+3 LegInfo Object Properties and Methods=LegInfo_Object_Properties_and_Methods
+3 Options Object Properties and Methods=Options_Object_Properties_and_Methods
+3 OptionsEx Object Properties and Methods=OptionsEx_Object_Properties_and_Methods
+3 Double Object Properties and Methods=Double_Object_Properties_and_Methods
+2 OLE Constants
+3 OLE Constants=OLE_Constants
+s

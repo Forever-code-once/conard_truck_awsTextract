@@ -1,0 +1,1000 @@
+body {
+	background-color: #ffffff;
+	text-align: center;
+	margin: auto auto;
+	font-family: verdana;
+	font-size: 12px;
+	line-height: 1.5em;
+}
+
+.border_full {
+	border-style:solid;
+	border-color:black;
+	border-width:1px;
+	font-size:12px;
+	font-family:arial;
+}
+
+.border_bottom {
+	border-style:solid;
+	border-color:black;
+	border-width:0 0 1px 0;
+	font-size:12px;
+	font-family:arial;
+}
+
+tr.table_row_0 {
+	background-color:#eeeeee;
+}
+tr.table_row_1 {
+	background-color:#cccccc;
+}
+
+tr.table_header {
+	background-color:#044874;
+}
+td.table_header,span.table_header {
+	font-family:arial;
+	font-weight:bold;
+	font-size:12px;
+	color:white;
+	padding:5px;
+}
+
+table.box { border-style : solid; border-width : 1px; border-bottom-color : #6699CC; border-left-color : #6699CC; border-top-color : #6699CC; border-right-color : #6699CC; }
+td.boxtr { border-style : solid; border-width : 1px; border-bottom-color : #000000; border-left-color : #000000; border-top-color : #000000; border-right-color : #000000; }
+tr.boxtr { border-style : solid; border-width : 1px; border-bottom-color : #000000; border-left-color : #000000; border-top-color : #000000; border-right-color : #000000; }
+font.text1 { font-family : verdana; font-size : 11px; }
+font.text2 { font-family : verdana; font-size : 12px; color : black}
+font.text2_1 { font-family : verdana; font-size : 12px; color : black; font-weight : bold; text-decoration : underline}
+font.text3 {  font-family : verdana; font-size : 14px; color : black; font-weight : bold}
+font.textred { font-family : verdana; font-size : 11px; color : #CC0000}
+font.yellowheading { font-family : verdana; font-weight : bold; font-size : 16px; color : #656B17}
+font.yellowheadings { font-family : verdana; font-weight : bold; font-size : 14px; color : #656B17}
+font.redheading { font-family : verdana; font-weight : bold; font-size : 14px; color : #CC0000}
+font.smalltext { font-family : verdana; font-weight : normal; font-size : 9px; color : black}
+
+
+font.text { font-family : verdana; font-size : 10px; color : #0066CC; }
+a:link, a:active, a:visited { text-decoration : none; font-weight: bold; font-family : verdana; font-size : 11px; color : #0E277B; }
+a:hover { text-decoration : underline; color : red; }
+
+
+a.bluelink:link , a.bluelink:active, a.bluelink:visited { text-decoration : underline; font-weight: bold; font-family : verdana; font-size : 11px; color : #0000FF; }
+a.bluelink:hover { text-decoration : underline; font-family : verdana; font-size: 11px; font-weight: bold; color : red; }
+
+a.blacklink:link, a.blacklink:active, a.blacklink:visited { text-decoration : underline; font-weight: bold; font-family : verdana; font-size : 12px; color : #000000; }
+a.blacklink:hover { text-decoration : underline; font-family : verdana; font-size: 12px; font-weight: bold; color : #CC0000; }
+a.smallredlink:link, a.smallredlink:active, a.smallredlink:visited { text-decoration : none; font-weight: normal; font-family : verdana; font-size : 11px; color : #CC0000; }
+a.smallredlink:hover { text-decoration : underline; font-family : verdana; font-size: 11px; font-weight: normal; color : #CC0000; }
+a.smallredlink_bold:link, a.smallredlink_bold:active, a.smallredlink_bold:visited { text-decoration : none; font-weight: bold; font-family : verdana; font-size : 11px; color : #CC0000; }
+a.smallredlink_bold:hover { text-decoration : underline; font-family : verdana; font-size: 11px; font-weight: bold; color : #CC0000; }
+a.lightblue:link, a.lightblue:active, a.lightblue:visited { text-decoration : none; font-weight: bold; font-family : verdana; font-size : 12px; color : #0E277B; }
+a.lightblue:hover { text-decoration : underline; font-family : verdana; font-size: 12px; font-weight: bold; color : red; }
+a.yellow:link, a.yellow:active, a.yellow:visited { text-decoration : none; font-weight: bold; font-family : verdana; font-size : 9px; color : yellow; }
+a.yellow:hover { text-decoration : underline; font-family : verdana; font-size: 9px; font-weight: bold; color : white; }
+a.smalllink:link, a.smalllink:active, a.smalllink:visited  { text-decoration : none; font-weight: bold; font-family : verdana; font-size : 9px; color : #E7FFFF; }
+a.smalllink:hover { text-decoration : underline; font-family : verdana; font-size: 9px; font-weight: bold; color : #E7FFFF; }
+a.footertext:link, a.footertext:active, a.footertext:visited  { text-decoration : none; font-weight: bold; font-family : verdana; font-size : 12px; color : #3A5CAE; }
+a.footertext:hover { text-decoration : underline; font-family : verdana; font-size: 12px; font-weight: bold; color : red; }   
+
+a.ss:link, a.ss:active, a.ss:visited { text-decoration : underline; font-family : verdana; font-size: 9px; font-weight: normal; color : blue; }
+a.ss:hover { text-decoration : underline; font-family : verdana; font-size: 9px; color : red; }
+
+
+.standard7  {font-family : arial,sans-serif; font-size: 7px; }
+.standard8  {font-family : arial,sans-serif; font-size: 8px; }
+.standard9  {font-family : arial,sans-serif; font-size: 9px; }
+.standard10 {font-family : arial,sans-serif; font-size: 10px; }
+.standard11 {font-family : arial,sans-serif; font-size: 11px; }
+.standard12 {font-family : arial,sans-serif; font-size: 12px; }
+.standard13 {font-family : arial,sans-serif; font-size: 13px; }
+.standard14 {font-family : arial,sans-serif; font-size: 14px; }
+.standard15 {font-family : arial,sans-serif; font-size: 15px; }
+.standard16 {font-family : arial,sans-serif; font-size: 16px; }
+.standard17 {font-family : arial,sans-serif; font-size: 17px; }
+.standard18 {font-family : arial,sans-serif; font-size: 18px; }
+.standard19 {font-family : arial,sans-serif; font-size: 19px; }
+.standard20 {font-family : arial,sans-serif; font-size: 20px; }
+.standard21 {font-family : arial,sans-serif; font-size: 21px; }
+.standard22 {font-family : arial,sans-serif; font-size: 22px; }
+.standard23 {font-family : arial,sans-serif; font-size: 23px; }
+.standard24 {font-family : arial,sans-serif; font-size: 24px; }
+.standard25 {font-family : arial,sans-serif; font-size: 25px; }
+.standard26 {font-family : arial,sans-serif; font-size: 26px; }
+.standard27 {font-family : arial,sans-serif; font-size: 27px; }
+.standard28 {font-family : arial,sans-serif; font-size: 28px; }
+.standard29 {font-family : arial,sans-serif; font-size: 29px; }
+.standard30 {font-family : arial,sans-serif; font-size: 30px; }
+.standard31 {font-family : arial,sans-serif; font-size: 31px; }
+.standard32 {font-family : arial,sans-serif; font-size: 32px; }
+
+	
+.border_top {border-top:1px black solid}
+.border_solid {border-width:1px;border-style:solid;border-color:black; margin:0 5px 0 5px;}
+.border_solid_standard12 {border-width:1px;border-style:solid;border-color:black;font-family : arial,sans-serif; font-size: 12px;}
+td.border_left {border-left:1px;border-right:0px;border-top:0px;border-bottom:0px;border-style:solid;border-color:black;}
+td.border_both_sides {border-left:1px;border-right:1px;border-top:0px;border-bottom:0px;border-style:solid;border-color:black;}
+.border_bottom {border-left:0px;border-right:0px;border-top:0px;border-bottom:1px;border-style:solid;border-color:black;}
+td.border_right {border-left:0px;border-right:1px;border-top:0px;border-bottom:0px;border-style:solid;border-color:black;}
+td.border_no_top {border-left:1px;border-right:1px;border-top:0px;border-bottom:1px;border-style:solid;border-color:black;}
+td.border_no_right {border-left:1px;border-right:0px;border-top:1px;border-bottom:1px;border-style:solid;border-color:black; margin:0 5px 0 5px;}
+
+/* simple css-based tooltip */ 
+div.form_tooltip { 
+    background-color:#000; 
+    border:1px solid #fff; 
+    padding:10px 15px; 
+    width:200px; 
+    display:none; 
+    color:#fff; 
+    text-align:left; 
+    font-size:12px; 
+    font-family:arial;
+ 
+    /* outline radius for mozilla/firefox only */ 
+    -moz-box-shadow:0 0 10px #000; 
+    -webkit-box-shadow:0 0 10px #000; 
+}
+
+
+/* impromptu */
+.jqifade{
+      position: absolute;
+      background-color: black;
+}
+div.jqi{
+      width: 600px;
+      font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+      position: absolute;
+      background-color: #eeeeee;
+      font-size: 11px;
+      text-align: left;
+      border: solid 1px #cccccc;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      padding: 7px;
+}
+div.jqi .jqicontainer{
+      font-weight: bold;
+}
+div.jqi .jqiclose{
+      position: absolute;
+      top: 4px; right: -2px;
+      width: 18px;
+      cursor: default;
+      color: #bbbbbb;
+      font-weight: bold;
+}
+div.jqi .jqimessage{
+      padding: 10px;
+      line-height: 20px;
+      color: #444444;
+}
+div.jqi .jqibuttons{
+      text-align: right;
+      padding: 5px 0 5px 0;
+      border: solid 1px #eeeeee;
+      background-color: #f4f4f4;
+}
+div.jqi button{
+      padding: 3px 10px;
+      margin: 0 10px;
+      background-color: #2F6073;
+      border: solid 1px #f4f4f4;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 12px;
+}
+div.jqi button:hover{
+      background-color: #728A8C;
+}
+div.jqi button.jqidefaultbutton{
+      background-color: #BF5E26;
+}
+.jqiwarning .jqi .jqibuttons{
+      background-color: #BF5E26;
+}
+
+/**********************
+* vista style toolbar *
+***********************/
+
+#vista_toolbar {
+float:left;
+font:normal 12px 'Trebuchet MS','Arial';
+width:100%;
+margin:0;
+padding:0;
+}
+
+#vista_toolbar ul {
+background-image:url(images/vista_back1.gif);
+background-repeat:repeat-x;
+float:left;
+line-height:48px;
+list-style:none;
+margin:0px;
+padding:0px 3px 0px 0px;
+width:100%;
+}
+
+#vista_toolbar li {
+display:inline;
+padding:0;
+}
+
+#vista_toolbar a {
+color:#FFF; /* need because it will use default link color */
+float:left;
+padding:0 3px 0 3px; /* left 3 px because of left.png image */ 
+text-decoration:none;
+}
+
+#vista_toolbar a span {
+display:block;
+float:none;
+padding:0 10px 0 7px;
+}
+
+#vista_toolbar a span img {
+border:none;
+}
+
+/* show picture when mouse over link */
+#vista_toolbar a:hover{
+background: url(images/vista_left1.png) no-repeat left center;
+}
+
+#vista_toolbar a:hover span {
+background:url(images/vista_right1.png) no-repeat right center;
+}
+
+#vista_toolbar a.right {
+float:right; /* for help button - just add class "right" ->  <a class="right"... */
+font-weight:bold;
+color:white;
+}
+
+/*****************************
+* end of vista style toolbar *
+******************************/
+
+.bol_sub_heading {
+	background-color:#cccccc;
+	width:100%;
+	font-weight:bold;
+	font-size:90%;
+	height:17px;
+	text-align:center;
+	border:1px solid black;
+}
+
+.bol_sub_text {
+	margin-left:25px;
+	font-size:12px;
+}
+
+.content_section {
+	text-align:left;
+	background-color:#EFEEF5;
+	border: solid black 1px;
+	font-family:arial;
+	font-size:12px;
+	padding:10px;
+	margin:10px;
+}
+
+.content_section_title {
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+.shipfrom_background {
+	background-color:#FEFDEF;
+}
+
+div.standard_button {cursor:pointer;border:1px #cccccc solid;height:60px;padding:5px 0 0 0;width:55px;background-color:#eeeeee}
+div.standard_button:hover {background-color:#dee3ff}
+
+.showOkay {background-color:#a3eab2}
+.showFail {background-color:#eaa3a3}
+
+p.page-break {page-break-before:always}
+
+.helpWindow img {border:0}
+.helpWindow {
+    display: none;
+    
+    position: absolute;
+
+    clear:both;
+    
+    text-decoration:none;
+    
+    background-color: #EEE;
+    color: #333;
+    border: 1px solid black;
+    text-align:left;
+    padding: 12px;
+    z-index: 5000;
+
+}
+
+tr.order_completed a:link , tr.order_completed a:active, tr.order_completed a:visited { text-decoration : none; font-weight: bold; font-family : verdana; font-size : 11px; color : green; }
+tr.order_completed a:hover { text-decoration : underline; font-family : verdana; font-size: 11px; font-weight: bold; color : red; }
+
+.highlight_number {color:red}
+
+.box1 {border:1px black solid;background-color:#FAF3F3;font-family:arial;font-size:12px}
+.box2 {border:1px black solid;background-color:#ecf2ff;font-family:arial;font-size:12px}
+
+.invoice_section_header {background-color:#cccccc;font-weight:bold}
+
+.section_header {background-color:#044874;color:white}
+.section_heading {font-weight:bold;font-size:14px;}
+/*
+.total_head_mrr { width:1000px; text-align:right; }
+*/
+
+.border_right {border:1px black solid; border-width:0 1px 0 0}
+.border_top {border:1px black solid; border-width:1px 0 0 0}
+.border_left {border:1px black solid; border-width:0 0 0 1px}
+.border_top_right {border:1px black solid;border-width:1px 1px 0 0}
+.border_top_right_bottom {border:1px black solid;border-width:1px 1px 1px 0}
+.border_top_right_left {border:1px black solid;border-width:1px 1px 0 1px}
+
+.format_notes {color:#999999;font-style:italic}
+.format_alert {color:red;font-weight:bold}
+.format_success {color:green}
+
+.lot_serial {color:blue}
+.reference {color:red}
+
+tr.row_border td {border:1px #cccccc solid;border-width:0 0 1px 0}
+
+.inventory_received {color:black}
+.inventory_not_received {color:#999999;font-style:italic}
+
+.available {color:green}
+.not_available {color:#999999}
+
+.available_load_entry {border:1px blue solid;border-width:1px 0 1px 0;margin:0;background-color:#efeec4;color:#bd0000;font-weight:bold;}
+.preplan_load_entry {border:1px blue solid;border-width:1px 0 1px 0;margin:0;background-color:#88CC88;color:#bd0000;font-weight:bold;}
+.note_entry {border:1px blue solid;border-width:1px 0 1px 0;margin:0;cursor:pointer;background-color:#efeec4;color:#bd0000;font-weight:bold}
+.note_entry_inside {margin:6px 5px}
+.truck_entry {border:1px black solid;border-width:0 0 1px 0;margin-bottom:5px;}
+.truck_entry span {display:block}
+.droppable_highlight {background-color:#e1f0e4}
+.trailer_entry_in_use {color:#bbbbbb;display:block}
+.truck_entry_in_use {color:#bbbbbb;display:block}
+.trailer_hover {color:#a9dbb5;cursor:pointer}
+.trailer_hover_other {background-color:#e1f0e4}
+.trailer_entry_available {color:#0E277B;font-weight:bold;cursor:pointer}
+
+/*
+.update_alert {background-color:#f28686;} 
+*/
+.update_alert {background-color:#ffcc00;} 
+
+
+a.available_load_link:link, a.available_load_link:active, a.available_load_link:visited {color:brown;text-decoration:none}
+a.available_load_link:hover {text-decoration:underline}
+
+a.alert:link, a.alert:active, a.alert:visited {color:#bd0000;font-size:11px;text-decoration:none}
+a.alert:hover { text-decoration : none; color : blue; }
+
+a.location:link, a.location:active, a.location:visited {color:#bd0000;font-size:11px;text-decoration:none}
+a.location:hover { text-decoration : none; color : blue; }
+.custom_popup_in_use {background-color:#000e48;color:white;padding:5px;font-weight:normal}
+.custom_popup_available {background-color:#00480a;color:white;padding:5px;font-weight:normal}
+
+#fuel_surcharge {cursor:pointer;font-weight:bold;color:#0E277B}
+#fuel_surcharge_holder {background-color:#eeeeee}
+
+#map_holder {position:absolute;background-color:#eeeeee;border:1px black solid}
+.div_link {color:#0E277B;font-weight:bold;cursor:pointer}
+
+.alert {color:#bd0000;}
+.mrr_alert {color:#CC0000; font-weight:bold;}
+.mrr_good_alert {color:#00CC00; font-weight:bold;}
+.good_alert {color:#00CC00;}
+.calendar_header {background-color:#005a91;color:white}
+.calendar_today {background-color:#e6e9f6}
+
+.add_entry_truck select {width:300px}
+.input_normal {width:300px}
+.input_short {width:50px}
+.input_medium {width:100px}
+.input_medium_long {width:200px}
+.input_date {width:75px}
+.input_time {width:75px}
+
+#truck_id_holder_new {display:none}
+#customer_id_holder_new {display:none}
+#trailer_id_holder_new {display:none}
+
+.admin_menu {padding:5px 20px;background-color:#eeeeee;border:1px black solid;font-family:arial;font-size:12px;text-align:left}
+.admin_menu1 {padding:2px 10px;background-color:#F7F6FF;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;text-align:left}
+.admin_menu2 {padding:2px 10px;background-color:#FFFEF1;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;text-align:left}
+.admin_menu3 {padding:2px 10px;background-color:#FFF6F6;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;text-align:left}
+.admin_menu4 {padding:2px 10px;background-color:#FFE6E6;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;text-align:left}
+
+.section0 {padding:5px 20px;background-color:#eeeeee;border:1px black solid;font-family:arial;font-size:12px;width:700px;margin:5px}
+.section1 {padding:2px 10px;background-color:#F7F6FF;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;width:700px;margin:5px}
+.section2 {padding:2px 10px;background-color:#FFFEF1;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;width:700px;margin:5px}
+.section3 {padding:2px 10px;background-color:#f7eded;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;width:700px;margin:5px}
+.section4 {padding:2px 10px;background-color:#f0fff1;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;width:700px;margin:5px}
+
+.section0_long {padding:5px 20px;background-color:#eeeeee;border:1px black solid;font-family:arial;font-size:12px;width:900px;margin:5px}
+.section1_long {padding:2px 10px;background-color:#F7F6FF;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;width:900px;margin:5px}
+.section2_long {padding:2px 10px;background-color:#FFFEF1;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;width:900px;margin:5px}
+.section3_long {padding:2px 10px;background-color:#f7eded;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;width:900px;margin:5px}
+.section4_long {padding:2px 10px;background-color:#f0fff1;border:1px black solid;font-family:arial;font-size:12px;font-weight:normal;width:900px;margin:5px}
+
+.section0_color {background-color:#eeeeee;border:1px black solid;padding:5px}
+.section1_color {background-color:#F7F6FF;border:1px black solid;padding:5px}
+.section2_color {background-color:#FFFEF1;border:1px black solid;padding:5px}
+.section3_color {background-color:#f7eded;border:1px black solid;padding:5px}
+.section4_color {background-color:#f0fff1;border:1px black solid;padding:5px}
+
+#upload_container {border:1px #aaaaaa solid;margin:10px 0}
+#upload_container .inside_container .header {font-size:16px;font-weight:bold;margin:10px;text-align:center}
+#upload_container .inside_container #browse_holder {border:0px blue solid;width:100%;text-align:center}
+
+#note_container {border:1px #aaaaaa solid;margin:10px 0}
+#note_container .inside_container .header {font-size:16px;font-weight:bold;margin:10px;text-align:center}
+#note_container .inside_container #browse_holder {border:0px blue solid;width:100%;text-align:center}
+
+.optional_day {display:none}
+
+.toggle_small {display:none}
+
+.show_inactive {color:#aaaaaa}
+.show_inactive_row {background-color:#ddd;}
+
+a.driver_inactive:link, a.driver_inactive:active, a.driver_inactive:visited {color:#aaaaaa;font-size:12px;text-decoration:none}
+a.driver_inactive:hover { text-decoration : none; color : red; }
+
+a.inactive:link, a.inactive:active, a.inactive:visited {color:#aaaaaa;font-size:12px;text-decoration:none}
+a.inactive:hover { text-decoration : none; color : red; }
+
+.toolbar_button {float:left;margin:5px 5px 0 5px;cursor:pointer;border:1px #eeeeee solid;text-align:center;width:60px;height:60px}
+.toolbar_button img {margin-top:5px}
+.toolbar_button_hover {background-color:#bdc9ff;border-color:#aaaaaa}
+
+.toolbar_button_mrr { margin:5px 5px 0 5px; cursor:pointer; border:1px #eeeeee solid; text-align:center; width:60px;height:60px }
+
+.nav_bar {float:left;background-color:#eeeeee;width:1000px;height:70px;border:1px black solid;margin:5px}
+
+.xlocked {background-color:#eeeeee;border:0}
+
+.odd {background-color:#e4e5ff}
+.even {background-color:#f9f9ff}
+
+.over {background-color:#c0ecbe}
+.line_entry {cursor:pointer}
+
+ul.popup_nav_ul {clear:both;background-image:none;line-height:20px;width:225px}
+ul.popup_nav_ul li {width:225px;background-image:none}
+ul.popup_nav_ul  a:link {background-image:none}
+ul.popup_nav_ul  a:visited {}
+ul.popup_nav_ul  a:hover {color:red}
+ul.popup_nav_ul  a:active {}
+
+a.nav_popup_link:link, a.nav_popup_link:visited, a.nav_popup_link:active {color:blue}
+a.nav_popup_link:hover {color:red}
+
+.header_sub {display:none;position:fixed;z-index:5000;background-color:#eeeeee;border:1px black solid;color:black;width:250px;}
+
+.add_equipment {display:none;background-color:#e2ffe1}
+
+.table_section {width:100%;border:1px black solid;margin-top:10px}
+.pcm_miles {color:green}
+
+.actual_details {display:none}
+
+.disabled {color:#aaaaaa}
+
+.row_hover_highlight:hover {background-color:#ffbdbd}
+
+a.dispatch_completed {color:green}
+a.dispatch_completed:hover {color:red}
+
+.import_steps {border: black solid 1px;width:550px;padding:5px;margin:5px;float:left;clear:both;background-color:#e4eaff}
+.import_steps .is_header {font-size:14px;text-align:center;font-weight:bold;}
+.import_steps .is_desc {font-style:italic;padding:0;padding-top:10px;padding-bottom:10px;}
+
+.entry_auto_created {border:1px #efa2a2 solid;background-color:#efa2a2}
+
+.link_style {cursor:pointer}
+
+.mrr_link_like_on { text-decoration : none; color : blue; cursor:pointer; }
+.mrr_link_like_off { text-decoration : none; color : #aaaaaa; cursor:pointer; }
+a.mrr_scheduled_link { text-decoration : none; color : black; cursor:pointer; font-family: arial; font-size: 11px; line-height: 1.0em; font-weight:bold; } 
+.mrr_maint_recur { text-decoration : none; color : black; font-weight:bold;}
+.mrr_maint_recur_item { text-decoration : none; color : blue; font-weight:bold; cursor:pointer;}
+.mrr_recur_styler { color : green;  font-family: arial; font-size: 11px; line-height: 1.0em; font-weight:bold; }
+.mrr_odom_reader { text-decoration : none; color : blue; font-weight:bold; cursor:pointer; }
+.stop_listing	{ margin-left:10px; }
+.exp_listing { margin-left:10px; }
+.mrr_help { text-decoration : none; color : blue; cursor:pointer; }
+.mrr_number_input	{ text-align:right; width:100px; }
+.mrr_text_input	{ text-align:left; width:500px; }
+
+.mrr_total_head { width:1000px; text-align:right; }
+.mrr_load_div_titles { color:#000000; font-weight:bold; margin-top:25px; margin-bottom:25px; text-align:center; background-color:#a17d0a; }
+.mrr_highlight_ooic_unmatched { color:#CC0000; font-weight:bold; }
+/**/
+
+#additional_contacts_container {border:1px #aaaaaa solid;margin:10px 0}
+#additional_contacts_container .inside_container .header {font-size:16px;font-weight:bold;margin:10px;text-align:center}
+#additional_contacts_container .inside_container #browse_holder {border:0px blue solid;width:100%;text-align:center}
+
+#help_desk_container {border:1px #aaaaaa solid;margin:10px 0}
+#help_desk_container .inside_container .header {font-size:16px;font-weight:bold;margin:10px;text-align:center}
+#help_desk_container .inside_container #browse_holder {border:0px blue solid;width:100%;text-align:center}
+
+.table_grid {border:1px #aaa solid;border-width:1px 0 0 1px}
+.table_grid td {border:1px #aaa solid;border-width:0 1px 1px 0}
+.mrr_bill_sub_note {color:black; font-style:italic;}
+.mrr_stoplight_box {width:auto; height:auto; min-width:500px; min-height:50px;}
+.xlocked_mrr {background-color:#dddddd;border:0}
+
+.load_stop_details {display:none}
+.dropped_trailer {display:none;background-color:#33ff00}
+.load_board_section_header {text-align:center;font-weight:bold;background-color:#8e0e0d;color:white;border-bottom:1px black solid}
+.available_driver_details {display:none}
+
+#truck_odometer_alert b{
+	color:red;
+}
+
+.mrr_note_style_box {
+	background-color:white;
+}
+.mrr_note_style_text {
+	color:black;
+	font-size:12px;
+}
+
+.mrr_show_inactive_red {
+	color:#BB0000;
+	font-weight:bold;
+}
+.mrr_show_inactive_replace {
+	color:black;
+	font-weight:bold;
+}
+.mrr_inactive_grey_back {
+	background-color:#888888;
+}
+
+.mrr_peoplenet_disp {
+	color:green;
+	font-weight:bold;	
+}
+.mrr_peoplenet_stop {
+	color:black;
+	font-weight:bold;	
+}
+.mrr_peoplenet_occur {
+	color:orange;
+	font-style:italic;	
+}
+.mrr_peoplenet_note {
+	color:red;
+	font-weight:bold;	
+}
+
+.calendar_header {
+	font-size:14px;	
+}
+.calendar_text {
+	font-size:12px;	
+}
+.calendar_toggle_links {
+	font-size:16px;
+	font-weight:bold;
+	color:blue;	
+}
+.calendar_toggle_links_set {
+	font-size:16px;
+	font-weight:bold;
+	color:black;	
+}
+
+pn_link_not_sent {
+	font-weight:bold;
+	color:red;
+}
+pn_link_sent {
+	font-weight:bold;
+	color:green;
+}
+pn_link_update {
+	font-weight:bold;
+	color:orange;
+}
+
+a.peoplenet_link_not_sent {
+	font-weight:bold;
+	color:red;
+}
+a.peoplenet_link_not_sent:visited {
+	font-weight:bold;
+	color:red;
+}
+a.peoplenet_link_not_sent:hover {
+	font-weight:bold;
+	color:red;
+}
+
+a.peoplenet_link_sent {
+	font-weight:bold;
+	color:green;
+}
+a.peoplenet_link_sent:visited {
+	font-weight:bold;
+	color:green;
+}
+a.peoplenet_link_sent:hover {
+	font-weight:bold;
+	color:green;
+}
+
+a.peoplenet_link_update {
+	font-weight:bold;
+	color:orange;
+}
+a.peoplenet_link_update:visited {
+	font-weight:bold;
+	color:orange;
+}
+a.peoplenet_link_update:hover {
+	font-weight:bold;
+	color:orange;
+}
+
+.geofencing_past_due {
+	font-weight:bold;
+	color:red;	
+}
+.geofencing_very_late {
+	font-weight:bold;
+	color:pink;	
+}
+.geofencing_late {
+	font-weight:bold;
+	color:orange;	
+}
+.geofencing_early {
+	font-weight:bold;
+	color:green;	
+}
+.geofencing_very_early {
+	font-weight:bold;
+	color:green;	
+}
+
+
+.mrr_trailer_switch {
+	color:black;
+}
+.mrr_current_truck_local {
+	color:black;
+}
+.mrr_current_truck_local_list {
+	color:blue;
+	font-weight:bold;
+}
+
+.mrr_load_board_map_style {
+	width:500px;
+	min-width:500px;
+	max-width:500px;	
+	height:200px;
+	min-height:200px;	
+	max-height:200px;
+	overflow:auto;
+	border: 1px dashed green;	
+}
+
+#employer_section {	border:1px #aaaaaa solid;margin:10px 0;	}
+#employer_section h1 {	font-size:16px;font-weight:bold;margin:10px;text-align:center; }
+
+/* Safety Report */
+.mrr_sr_abrupt_stop {
+	color:red;
+	font-weight:bold;
+}
+.mrr_sr_speeding {
+	color:brown;
+	font-weight:bold;
+}
+.mrr_sr_11hr_rule {
+	color:red;
+	font-weight:bold;
+}
+.mrr_sr_14hr_rule {
+	color:orange;
+	font-weight:bold;
+}
+.mrr_sr_70hr_rule {
+	color:purple;
+	font-weight:bold;
+}
+
+.pn_messages_block {  
+	padding:10px;
+	margin:10px;
+	border:1px solid #00CC00;
+	color:#000000;
+}
+
+.change_log {
+	
+	/*
+	padding:10px;
+	margin:10px;
+	border:1px solid #CCCCCC;
+	background-color:#DDDDDD;
+	*/		
+}
+.change_log {	border:1px #aaaaaa solid;margin:10px 0;}
+.change_log h1 {	font-size:16px;font-weight:bold;margin:10px;text-align:center; }
+
+.PN_disp_log_button { }
+.PN_disp_log {
+	
+	/*
+	padding:10px;
+	margin:10px;
+	border:1px solid #CCCCCC;
+	background-color:#DDDDDD;
+	*/		
+}
+.PN_disp_log {	border:1px #aaaaaa solid;margin:10px 0;}
+.PN_disp_log h1 {	font-size:16px;font-weight:bold;margin:10px;text-align:center; }
+
+.insurance_email_log  {	border:1px #aaaaaa solid;margin:10px 0;	}
+.insurance_email_log h1 {	font-size:16px;font-weight:bold;margin:10px;text-align:center; }
+
+.mrr_task_list_title { color:blue; }
+.mrr_task_list_task {color:brown; }
+.mrr_task_list_task_run {color:gray; } 
+.mrr_task_list_last_run {color:orange; }
+.mrr_task_list_next_run {color:green; }
+.mrr_task_list_edit {color:blue; cursor:pointer;}
+
+.mrr_task_list_task_work_active {  }
+.mrr_task_list_task_work_inactive { text-decoration:line-through; color:gray; }
+
+.mrr_appt_windower { display:inline; color:brown; font-weight:bold; }
+
+.all_master_loads { border:1px #aaaaaa solid;margin:10px 0; padding 10px;background-color:#eeeeee;}
+.all_master_load_disps { border:1px #aaaaaa solid;margin:10px 0; padding 10px;background-color:#ffffff;}
+
+.load_and_delivery_display { }
+.load_and_delivery_display1 { color:purple; font-weight:bold; display:inline;}
+.load_and_delivery_display2 { color:brown; font-weight:bold; display:inline;}
+.tracking_due_display { color:orange; font-weight:bold; display:inline;}
+
+.all_pn_activity_notes { width:200px; left:-200px; border:1px solid black; background-color:#FCED98; padding:5px; z-index:5000; }
+
+.planning_driver_load { border:0px; border-bottom:1px blue solid; padding:10px; }
+.planning_driver_dispatched { background-color: #ccccFF; }
+.planning_driver_past { background-color: #FFcccc;  }
+.planning_driver_pallet { background-color: #ccFFcc;  border:1px blue solid; padding:10px; float:right; width:500px; position:fixed;top:400px;left:1275px;margin-bottom:10px;z-index:10000; }
+
+.non_jit {
+	color:red;
+	font-weight:bold;	
+}
+.jit {
+	color:blue;
+	font-weight:bold;	
+}
+.non_jit2 {
+	color:red;
+	font-weight:bold;	
+	display:inline-block;
+}
+.jit2 {
+	color:blue;
+	font-weight:bold;	
+	display:inline-block;
+}
+
+.mrr_button_access_notice {
+	color:red;
+	font-weight:bold;	
+}
+
+.avail_driver_hours {
+	color:green;
+	font-weight:bold;		
+}
+
+
+.msg_marquee {
+	background-color:#000000;
+	color:#FFFFFF;
+	border: 2px solid #CC0000;
+	padding:5px;
+	width:99%;
+	height:25px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.im_msg_box {
+	height: 150px;
+	max-height: 150px;
+	overflow-y:scroll;
+}
+.im_msg_send {
+	
+	cursor:pointer;
+}
+
+.deleted_item {
+	color:#cc0000;
+	font-weight:bold;	
+	font-style:italic;
+	background-color:#efefef;
+}
+
+.mrr_time_off {	
+	color:brown;
+	font-weight:bold;	
+	font-style:italic;
+	background-color:#efefef;
+}
+
+.mrr_unavailable {	
+	color:brown;
+	font-weight:bold;	
+	font-style:italic;
+}
+.mrr_absent {	
+	color:brown;
+	font-weight:bold;	
+	font-style:italic;
+}
+.mrr_vacation {	
+	color:brown;
+	font-weight:bold;	
+	font-style:italic;
+}
+
+
+.special_project {
+	color:orange;
+	font-weight:bold;	
+	font-style:italic;
+}
+
+
+.carlex_timesheet { 
+	
+}
+.shuttle_run { 
+	
+}
+
+.mrr_force_reloader {
+	margin:20px;
+	text-align:center;
+}
+.mrr_force_reloader_msg {
+	width:200;
+	padding:10px;
+	color:brown;
+	font-weight:bold;	
+	font-style:italic;
+}
+.mrr_force_reloader_button { 
+	width:200;
+	padding:10px;
+	background-color:#ffcc00;
+	color:#000000;
+	border:1px solid #cc0000;
+	cursor:pointer;
+	font-weight:bold;	
+}
+
+.driver_status {
+	width:100%;
+}
+.driver_status_li {
+	
+}
+.driver_status_name { 
+	display:inline-block;
+	margin:0;
+	padding:0;
+	width:45%;
+	color:#FFFFFF;
+	text-align:left;
+}
+.driver_status_type { 
+	display:inline-block;
+	margin:0;
+	padding:0;
+	width:31%;
+	color:#FFFFFF;
+	text-align:right;
+}
+.driver_status_days { 
+	display:inline-block;
+	margin:0;
+	padding:0;
+	width:19%;
+	color:#CC0000;
+	text-align:left;
+}
+
+.driver_status_name a { 
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+
+.driver_txt {
+	width:100%;
+}
+.driver_txt_li {
+	
+}
+.driver_txt_name { 
+	display:block;
+	margin:0;
+	padding:0;
+	width:100%;
+	color:#FFFFFF;
+	text-align:left;
+}
+.driver_txt_date { 
+	display:inline-block;
+	margin:0;
+	padding:0;
+	width:55%;
+	color:#FFFFFF;
+	text-align:right;
+}
+.driver_txt_phone { 
+	display:inline-block;
+	margin:0;
+	padding:0;
+	width:40%;
+	color:#FFFFFF;
+	text-align:right;
+}
+
+.driver_txt_msg { 
+	display:block;
+	margin:0;
+	padding:0;
+	width:100%;
+	color:#CC0000;
+	text-align:left;
+}
+
+.driver_txt_name a { 
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+select.ui-datepicker-new-month 
+{
+	width: 7em;
+	color: #555555;
+	left: 2.2em;
+}
+select.ui-datepicker-new-year 
+{
+	width: 5em;
+	color: #555555;
+	left: 9.4em;
+}

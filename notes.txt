@@ -1,0 +1,287 @@
+section IDs:
+1 - Driver		D
+2 - Trailer		R
+3 - Truck			T
+5 - Customer		C
+6 - Dispatches		D
+8 - Loads			L
+10- Maint Requests  M
+
+/*
+Completed:
+@@ Drop downs on Accounting menu needs to drop down when you hover over it. 
+@@ Change name of Use Register, under Banking in accounting, to Check Register.
+@@ Can we separate by date in the 100 most recent invoices created box. Company snapshot page in  accounting.
+@@ No timeout on the trucking/accounting side						...MRR: made a full day
+@@ Popup window to view chart of accounts
+@@ Multi-sort insurance report
+@@ Master search field (figure it out Chris) not important               ...MRR: already done.
+@@ If first stop hasn't been completed for a load, separate out to "not dispatched"
+@@ be able to print out a load sheet for a driver --how is it different from just printing the load page itself???
+  
+
+May 2013...still needed list 
+ACCOUNTING:
+Group items with totals on the profit and loss report  			...MRR: is this already done??? (grouped by section)
+Click on the items on the income side of the p&l to view the details  ...MRR: is this already done??? (click on dollar value)
+Better way to handle discounts --???
+
+TRUCKING:
+2 new columns on truck side
+Get rid of the "add stop" button								...MRR: clears the form.  If already filled and not saving, this button will clear it for you.  Not sure this should actually be done. 
+Streamline the fuel surcharge section (on the right side)
+If stop info is entered, but not customer selected, it prompts and wipes out the stop info
+Double check how the daily cost is calculating trailer actual cost since they have two trailers for each one being run
+
+Be able to drag driver to available load. Prompt to preplan or create dispatch
+Be able to drag available load to any other column to get the driver for it and set it to a preplan
+
+add a verify to make sure the lumper receipts are present --where...load_handler only??? how does the Lumper system work...?
+   ---Lumper has an expense type and a referenece to the load_handler_actual_var_exp.
+   ---Rate_Lumper is within load_handler table, but all of them are 0.00 ???
+
+some way to 'check call' a driver... what does this mean for the website???  What drivers and what criteria is used...or all schools?
+
+potential 'google suggest' search field with overlay --where is this modification going to be placed???
+
+on non-invoiced report (also on the days reports), show replacement trucks --how does replacement truck system work???
+on the sales report by truck - show the replacement trucks - be able to select multiple trucks
+
+Check call driver. Icon on desktop flashes when not checked
+Note on equipment or section. Popup when going to that section.
+Notes for specific people. Be able to dismiss (like tasks).  Popup when new notes are entered.
+Allow deadlines on notes. Show popup every time load board loads if past deadlines.
+Flashing alert on the load page when dispatches are missing odometer reading
+Separate out the comCheck from the driver payroll report
+Once payroll has been generated,  can't be changed without authorization.
+
+Multiple check times for the fleetone
+
+CDPN - Conard transportation Inc - SCAC code
+New customer on load page locking page up
+Clean up load board (maybe tabs)
+Load board, notes popup, give more info if preplan
+
+Cick taken load on quiote, clears screen info
+Dispatch, loaded, delivery time for each stop
+Driver keeps has load flag, even after completing dispatch
+Prompt for deadhead miles on new dispatches based on last driver drop and first one on the new dispatch
+Show the miles on new dispatches before saving as well
+
+Hourly payroll update not allowing Split hourly payroll by month time frame
+Day Orr hourly
+//END MAY list...
+
+
+
+
+
+
+
+
+
+To Be Reviewed with Dale:
+----------------------------------------------------------------------------
+@@ incorporate new design for toolbar...
+@@ admin trucks / move right most column to below 2nd column
+@@ truck is valid?
+2 new columns on truck side
+@@ accounting coa (R)ental / (L)ease
+@@ add prepass field to trucks
+
+@@ first dispatch getting all credit (should be most miles of the load) 
+---------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@@ load board - assign driver to a load, automatically flag the 'has load' checkbox
+@@ AR - detail report - viewable on the trucking side
+@@ PLEASE FIX THE TIMING OUT ISSUE        ...use cookie settings to store session...make 48 hours life-span
+@@ Make sure in accounting and dispatch the columns of Cost, Bill, Profit is in the order of Bill, Cost, Profit.  And change the name of Bill to Sales please.
+@@ After a load has been invoiced and the date is recorded under the DATE Invoiced field in dispatch in a load is that the actual invoice date or the month that it should go in? ...Answer:  load_handler.linedate_pickup_eta displayed and queried by.
+@@ Sort load board by date/time
+@@ Master Search for Trucking side for virtually all peices (trucks,trailers,drivers,customers,loads,stops,dispatches)
+@@ Snapshot page on trucking side. (build as a separate page for now.)
+   	Bad customers
+   	Sales
+   	Miles run
+   	Different website links
+@@ Add question mark next to fuel surcharge (single field) in admin customers
+@@ Add question mark to other fields in the admin areas (trucks / trailers / customers)
+@@ Show example next to the date fields (eg. mm/dd/yyyy)
+@@ Change "miles in/miles out" to beginning odometer, ending odometer (truck and trailer section)
+@@ Get rid of budget column on the trailer list in admin trailers
+@@ If company owned is checked on the trailer/truck, gray out the rental fields
+@@ Birthdate on drivers only goes back to 2012, and can not even manually enter dates far in the past
+@@ Create tool to show which chart of accounts not in use on the comparison report
+@@ Shortcut links on the comparison report to previous 6 months. Open in new window with dates prefilled in and report loaded
+@@ Auto prompt to make a truck/trailer inactive when entering the return dates ...actually did this for Trucks already.  Added more to ensure always sets active flag either way.  Trailers added same way.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Added on 6/25/2012
+@@ load board - assign driver to a load, automatically flag the 'has load' checkbox
+?? load: 11296 - split load - showed original driver in york as opposed to la vergne
+@@ AR - detail report - viewable on the trucking side
+
+
+New notes for Conrad from Dale, June 2012
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@@ PLEASE FIX THE TIMING OUT ISSUE        ...use cookie settings to store session...make 48 hours life-span
+@@ Make sure in accounting and dispatch the columns of Cost, Bill, Profit is in the order of Bill, Cost, Profit.  And change the name of Bill to Sales please.
+Drop downs on Accounting menu needs to drop down when you hover over it.
+Change name of Use Register, under Banking in accounting, to Check Register.
+Can we separate by date in the 100 most recent invoices created box. Company snapshot page in  accounting.
+Be able to choose what you want on the company snapshot page in the boxes.  Can talk about this one.
+@@ After a load has been invoiced and the date is recorded under the DATE Invoiced field in dispatch in a load is that the actual invoice date or the month that it should go in? ...Answer:  load_handler.linedate_pickup_eta displayed and queried by.
+On printing checks you have to save first then print. You should be able to print and it saves it automatically.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+New notes for Conard as of May 29, 2012
+
+No timeout on the trucking/accounting side
+
+@@ Add question mark next to fuel surcharge (single field) in admin customers
+@@ Add question mark to other fields in the admin areas (trucks / trailers / customers)
+
+@@ Show example next to the date fields (eg. mm/dd/yyyy)
+Get rid of the "add stop" button
+@@ Change "miles in/miles out" to beginning odometer, ending odometer (truck and trailer section)
+@@ Get rid of budget column on the trailer list in admin trailers
+
+@@ If company owned is checked on the trailer/truck, gray out the rental fields
+@@ Auto prompt to make a truck/trailer inactive when entering the return dates ...actually did this for Trucks already.  Added more to ensure always sets active flag either way.  Trailers added same way.
+
+@@ Birthdate on drivers only goes back to 2012, and can not even manually enter dates far in the past
+
+@@ Create tool to show which chart of accounts not in use on the comparison report
+@@ Incorporate another row into the comparison report breaking down the variance per column
+@@ Shortcut links on the comparison report to previous 6 months. Open in new window with dates prefilled in and report loaded
+
+@@ Sort load board by date/time
+
+@@ Master Search for Trucking side for virtually all peices (trucks,trailers,drivers,customers,loads,stops,dispatches)
+@@ Snapshot page on trucking side. (build as a separate page for now.)
+   	Bad customers
+   	Sales
+   	Miles run
+   	Different website links
+
+Streamline the fuel surcharge section (on the right side)
+If first stop hasn't been completed for a load, separate out to "not dispatched"
+If stop info is entered, but not customer selected, it prompts and wipes out the stop info
+
+Double check how the daily cost is calculating trailer actual cost since they have two trailers for each one being run
+
+@@ Move trailers to the stop level instead of dispatch level (fairly large change)
+
+Be able to drag driver to available load. Prompt to preplan or create dispatch
+Be able to drag available load to any other column to get the driver for it and set it to a preplan
+
+
+//In Progress or awaiting approval:
+@@ keep track of accident truck
+@@ --include info for driver, truck, trailer, cost, deductable, insurance, documents and bills, down-time, maint request, etc...dates
+@@ add links
+
+
+
+================================================================================================================================================================================================================================================================
+
+
+
+//To Be Completed:
+
+add a verify to make sure the lumper receipts are present --where...load_handler only??? how does the Lumper system work...?
+   ---Lumper has an expense type and a referenece to the load_handler_actual_var_exp.
+   ---Rate_Lumper is within load_handler table, but all of them are 0.00 ???
+
+some way to 'check call' a driver... what does this mean for the website???  What drivers and what criteria is used...or all schools?
+
+be able to print out a load sheet for a driver --how is it different from just printing the load page itself???
+
+potential 'google suggest' search field with overlay --where is this modification going to be placed???
+
+on non-invoiced report (also on the days reports), show replacement trucks --how does replacement truck system work???
+on the sales report by truck - show the replacement trucks -
+    be able to select multiple trucks
+
+@@ detailed logging changed through out site...
+
+
+
+
+Conard trucking notes
+
+Check call driver. Icon on desktop flashes when not checked
+Note on equipment or section. Popup when going to that section.
+Notes for specific people. Be able to dismiss (like tasks).  Popup when new notes are entered.
+Allow deadlines on notes. Show popup every time load board loads if past deadlines.
+@@ Be able to dismiss items on the calendar display
+@@ Track who does things on the site
+Flashing alert on the load page when dispatches are missing odometer reading
+Separate out the comCheck from the driver payroll report
+Once payroll has been generated,  can't be changed without authorization.
+@@ Work with quick books or peach tree for auto importing
+
+
+
+
+Multiple check times for the fleetone
+Popup window to view chart of accounts
+Group items with totals on the profit and loss report
+Click on the items on the income side of the p&l to view the details
+Better way to handle discounts
+
+CDPN - Conard transportation Inc - SCAC code
+New customer on load page locking page up
+Clean up load board (maybe tabs)
+Load board, notes popup, give more info if preplan
+Master search field (figure it out Chris) not important
+Cick taken load on quiote, clears screen info
+Dispatch, loaded, delivery time for each stop
+Driver keeps has load flag, even after completing dispatch
+Prompt for deadhead miles on new dispatches based on last driver drop and first one on the new dispatch
+Show the miles on new dispatches before saving as well
+Maintenance page
+
+
+
+
+
+
+
+Multi-sort insurance report
+Hourly payroll update not allowing Split hourly payroll by month time frame
+Day Otr hourly
+
+@@ Be able to specify special circumstances prices on the load Ie scale ticket, bonus, etc
+
+@@ Fill in eta/pta from the load when creating a dispatch from a load
+@@ Make location a non required field
+
+@@ Errors at the bottom of the load handler
+
+@@ Report to show all loads that don't have dispatches (available loads) - sorted by state
+
+@@ Don't close load dispatch window on save
+
+@@ Don't pre fill load handler information from the create lh from dispatch
+
+@@ Checkbox to force load as available even if it already has a dispatch
+
+@@ Be able to load specific dispatCh from the index page as well as the load handler
+
+Be able to add to fixed and variable expense types
+
+@@ Lock top menu
+
+@@ Import fuel invoices from employer solutions
+
+@@ Be able to add dynamic cost fields on the settings page
+
+@@ Move reports to their respective drop downs (drivers, trucks, etc...)
+
+
+	*/

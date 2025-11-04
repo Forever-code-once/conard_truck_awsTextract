@@ -1,0 +1,5 @@
+[15-Apr-2019 15:51:50 America/Chicago] PHP Deprecated:  mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in C:\web\trucking.conardlogistics.com\www\sounds\cm\app.php on line 21
+[15-Apr-2019 15:53:04 America/Chicago] PHP Fatal error:  Call to undefined function mysqli_connect() in C:\web\trucking.conardlogistics.com\www\sounds\cm\app.php on line 21
+[15-Apr-2019 17:37:20 America/Chicago] PHP Parse error:  syntax error, unexpected '=', expecting ',' or ';' in C:\web\trucking.conardlogistics.com\www\sounds\cm\app.php on line 25
+[15-Apr-2019 18:17:08 America/Chicago] PHP Notice:  Undefined variable: tab2 in C:\web\trucking.conardlogistics.com\www\sounds\cm\app.php on line 112
+[15-Apr-2019 18:18:50 America/Chicago] PHP Notice:  Undefined variable: tab2 in C:\web\trucking.conardlogistics.com\www\sounds\cm\app.php on line 112

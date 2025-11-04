@@ -1,0 +1,264 @@
+Attribute VB_Name = "Module1"
+    '********************************************************************
+    ' Programmer's Note:
+    '
+    ' NOTE: This function declaration file is for Win 32 VB.  Do not use this for VB.Net applications.  See the VB.NET documentation
+    ' in the PCM Connect manual and the VB.NET folder. 
+    '
+    ' In all the functions below, the following two 'C' arguments must be
+    ' declared correctly: server IDs and trip IDs. Their types are:
+    '       PCMServerID As Integer
+    '       Trip As Long
+    '
+    ' For example, the function PCMSNewTrip() takes a PCMServerID in 'C'
+    ' which must be an Integer in VB. PCMSNewTrip() returns a Trip which must
+    ' be an Long. Therefore the declaration must be:
+    '
+    ' Declare Function PCMSNewTrip (ByVal serverID%) As Long
+    '
+    '********************************************************************
+    
+    '***************************************************
+    ' FUNCTIONS DECLARATIONS:
+    '***************************************************
+	
+    ' Initialization functions
+    Declare Function PCMSOpenServer Lib "PCMSRV32.DLL" (ByVal appInst%, ByVal hWnd%) As Integer
+    Declare Function PCMSCloseServer Lib "PCMSRV32.DLL" (ByVal serverID%) As Integer
+    
+    ' Info functions
+    Declare Function PCMSSetDebug Lib "PCMSRV32.DLL" (ByVal debugLevel&) As Integer
+    Declare Function PCMSGetDebug Lib "PCMSRV32.DLL" () As Integer
+    Declare Function PCMSIsValid Lib "PCMSRV32.DLL" (ByVal serverID%) As Integer
+    Declare Function PCMSGetError Lib "PCMSRV32.DLL" () As Integer
+    Declare Function PCMSGetErrorString Lib "PCMSRV32.DLL" (ByVal errorCode&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSGetErrorEx Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSAbout Lib "PCMSRV32.DLL" (ByVal topic$, ByVal buffer$, ByVal buflen&) As Integer
+    
+    ' Simple functions
+    Declare Function PCMSCalcDistance Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal orig$, ByVal dest$) As Long
+    Declare Function PCMSCalcDistance2 Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal orig$, ByVal dest$, ByVal routeType&) As Long
+    Declare Function PCMSCalcDistance3 Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal orig$, ByVal dest$, ByVal routeType&, ByRef hours%) As Long
+    Declare Function PCMSCheckPlaceName Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal cityZip$) As Integer
+    Declare Function PCMSCityToLatLong Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal name$, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSLatLongToCity Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal name$, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSAddressToLatLong Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal City$, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSLatLongToAddress Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal latlong$, ByVal buffer$, ByVal buflen&) As Integer
+    
+    ' Region functions
+    Declare Function PCMSNumRegions Lib "PCMSRV32.DLL" (ByVal serverID%) As Long
+    Declare Function PCMSGetRegionName Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal which&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSSetDefaultRegion Lib "PCMSRV32.DLL" (ByVal regionID$) As Integer
+    Declare Function PCMSGetDefaultRegion Lib "PCMSRV32.DLL" (ByVal buflen&, ByVal regionID$) As Integer
+    
+    ' Trip management
+    Declare Function PCMSNewTrip Lib "PCMSRV32.DLL" (ByVal serverID%) As Long
+    Declare Function PCMSNewTripWithRegion Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal regionName$) As Long
+    Declare Sub PCMSDeleteTrip Lib "PCMSRV32.DLL" (ByVal tripID&)
+    
+    ' Trip options, stops, etc.
+    Declare Function PCMSCalcTrip Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal orig$, ByVal dest$) As Long
+    Declare Function PCMSCalculate Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Function PCMSOptimize Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Function PCMSGetDuration Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Function PCMSAddStop Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal stopName$) As Integer
+    Declare Function PCMSDeleteStop Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal which&) As Integer
+    Declare Function PCMSGetStop Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal which&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSNumStops Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Sub PCMSClearStops Lib "PCMSRV32.DLL" (ByVal tripID&)
+    Declare Function PCMSGetStopType Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal which&, ByRef stype&) As Integer
+    
+    ' Lookup Functions
+    Declare Function PCMSLookup Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal cityZip$, ByVal easy&) As Integer
+    Declare Function PCMSGetMatch Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal index&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSGetFmtMatch Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal index&, ByVal buffer$, ByVal buflen&, ByVal zipLen&, ByVal cityLen&, ByVal countyLen&) As Integer
+    Declare Function PCMSNumMatches Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Sub PCMSSetExactLevel Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal threshold&)
+    Declare Function PCMSGetExactLevel Lib "PCMSRV32.DLL" (ByVal serverID%) As Integer
+    Declare Function PCMSGetFmtMatch2 Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal index&, ByVal addrBuffer$, ByVal addrLen%, ByVal cityBuffer$, ByVal cityLen%, ByVal stateBuffer$, ByVal stateLen&, ByVal zipBuffer$, ByVal zipLen&, ByVal countyBuffer$, ByVal countyLen&) As Integer
+    
+    ' Report functions
+    Declare Function PCMSGetRpt Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal rptNum&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSNumRptBytes Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal rptNum&) As Long
+    Declare Function PCMSGetRptLine Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal rptNum&, ByVal lineNum&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSNumRptLines Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal rptNum&) As Long
+    Declare Function PCMSGetHTMLRpt Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal rptNum&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSNumHTMLRptBytes Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal rptNum&) As Long
+    
+    ' Trip options
+    Declare Sub PCMSSetCalcType Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal routeType%)
+    Declare Sub PCMSSetKilometers Lib "PCMSRV32.DLL" (ByVal tripID&)
+    Declare Sub PCMSSetMiles Lib "PCMSRV32.DLL" (ByVal tripID&)
+    Declare Sub PCMSSetBordersOpen Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal isOpen%)
+    Declare Sub PCMSSetHubMode Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal onOff%)
+    Declare Sub PCMSSetResequence Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal changeDest%)
+    Declare Sub PCMSSetAlphaOrder Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal alphaOrder%)
+    Declare Sub PCMSDefaults Lib "PCMSRV32.DLL" (ByVal tripID&)
+    Declare Sub PCMSSetOptions Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal options%)
+    Declare Function PCMSGetOptions Lib "PCMSRV32.DLL" (ByVal tripID&) As Integer
+    Declare Function PCMSGetCalcType Lib "PCMSRV32.DLL" (ByVal tripID&) As Integer
+    Declare Function PCMSSetLoaded Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal which&, ByVal onOff%) As Integer
+    Declare Sub PCMSSetCalcTypeEx Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal rtType&, ByVal optFlags&, ByVal vehType&)
+    Declare Function PCMSGetCalcTypeEx Lib "PCMSRV32.DLL" (ByVal tripID&, ByRef rtType&, ByRef optFlags&, ByRef vehType&) As Long
+
+    
+    ' Extended Trip options
+    Declare Sub PCMSSetCustomMode Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal onOff%)
+    Declare Sub PCMSSetCost Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal cost&)
+    Declare Function PCMSGetCost Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Sub PCMSSetShowFerryMiles Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal show%)
+    Declare Sub PCMSSetOnRoad Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal isOnRoad%)
+    Declare Sub PCMSSetBreakHours Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal hours&)
+    Declare Function PCMSGetBreakHours Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Sub PCMSSetBreakWaitHours Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal hours&)
+    Declare Function PCMSGetBreakWaitHours Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Sub PCMSSetUseShapePts Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal onOff%)
+    Declare Sub PCMSSetBorderWaitHours Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal hours&)
+    Declare Function PCMSGetBorderWaitHours Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Sub PCMSSetHazOption Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal hazType%)
+    
+    ' Trip Leg information
+    Declare Function PCMSNumLegs Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Function PCMSGetLegInfo Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal legNum&, ByRef legInfo As Object) As Integer
+    Declare Function PCMSGetNumSegments Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Function PCMSGetSegment Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal segNum&, ByRef egmentStruct As Object) As Integer
+    
+    ' Extended functionality
+    Declare Function PCMSGetLocAtMiles Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal miles&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSGetLocAtMinutes Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal minutes&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSLatLongAtMiles Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal miles&, ByVal buffer$, ByVal useShpPts%) As Integer
+    Declare Function PCMSLatLongAtMinutes Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal minutes&, ByVal buffer$, ByVal useShpPts%) As Integer
+    Declare Function PCMSLatLongsEnRouteA Lib "PCMSRV32.DLL" Alias "PCMSLatLongsEnRoute" (ByVal tripID&, ByVal latlong&, ByVal numPairs&, ByVal shpPts%) As Long
+    Declare Function PCMSLatLongsEnRouteB Lib "PCMSRV32.DLL" Alias "PCMSLatLongsEnRoute" (ByVal tripID&, ByRef latlong#, ByVal numPairs&, ByVal shpPts%) As Long
+    Declare Function PCMSAFLinks Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal favor%) As Integer
+    Declare Function PCMSAFLinksClear Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Function PCMSAFLoad Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal fileName$) As Integer
+    Declare Function PCMSAFSave Lib "PCMSRV32.DLL" (ByVal serverID%) As Integer
+    Declare Function PCMSCalcDistToRoute Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal buffer$) As Integer
+    Declare Function PCMSAFLoadForRegion Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal fileName$, ByVal regionID$) As Integer
+    Declare Function PCMSAFSaveForRegion Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal regionID$) As Integer
+    Declare Sub PCMSConvertLLToPlace Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal yesNo%)
+    Declare Sub PCMSSetVehicleType Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal onOff%)
+    Declare Sub PCMSSetRoadNameOnly Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal onOff%)
+    Declare Function PCMSAirDistToRte Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal location$, ByVal legNum&) As Long
+    Declare Function PCMSAirDistToRte2 Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal location$, ByVal legNum&, ByVal dir$, ByVal recalc%) As Integer
+    Declare Sub PCMSTranslateAlias Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal translate%)
+    
+    ' Custom Places
+    Declare Function PCMSAddCustomPlace Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal name$, ByVal location$) As Long
+    Declare Function PCMSDeleteCustomPlace Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal name$) As Long
+    
+    ' Special Lists
+    Declare Function PCMSCountryList Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal regionID$) As Integer
+    Declare Function PCMSCountryListItem Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal regionID$, ByVal index&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSStateList Lib "PCMSRV32.DLL" (ByVal serverID%) As Integer
+    Declare Function PCMSStateListItem Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal index&, ByVal buffer$, ByVal buflen&) As Integer
+
+    
+    ' Location Radius
+    Declare Function PCMSLocRadLookup Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal location$, ByVal Radius&, ByVal cities%, ByVal postalCodes%, ByVal customPlaces%, ByVal pois%, ByVal poiCategoryIndex%) As Integer
+    Declare Function PCMSGetLocRadItem Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal index&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSNumPOICategories Lib "PCMSRV32.DLL" (ByVal serverID%) As Integer
+    Declare Function PCMSPOICategoryName Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal index&, ByVal buffer$, ByVal buflen&) As Integer
+    
+    ' Tolls
+    Declare Sub PCMSSetTollMode Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal mode&)
+    Declare Function PCMSGetToll Lib "PCMSRV32.DLL" (ByVal tripID&) As Long
+    Declare Function PCMSNumTollDiscounts Lib "PCMSRV32.DLL" (ByVal serverID&) As Integer
+    Declare Function PCMSGetTollDiscountName Lib "PCMSRV32.DLL" (ByVal serverID&, ByVal index&, ByVal buffer$, ByVal buflen&) As Integer
+    Declare Function PCMSGetTollBreakdown Lib "PCMSRV32.DLL" (ByVal tripID&, ByVal discProgram&) As Long
+    
+    ' Mileage Caching
+    Declare Function PCMSTripCacheSave Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal file$) As Long
+    Declare Function PCMSTripCacheLoad Lib "PCMSRV32.DLL" (ByVal serverID%, ByVal file$) As Long
+  	
+	' Utility functions
+	Declare Function PCMSStrLen Lib "PCMSRV32.DLL" (ByVal buffer$) As Integer
+	
+	'***************************************************
+	' CONSTANTS:
+	'***************************************************
+	' Old style route types
+	Public Const CALC_PRACTICAL As Integer = 0
+	Public Const CALC_SHORTEST As Integer = 1
+	Public Const CALC_NATIONAL As Integer = 2
+	Public Const CALC_AVOIDTOLL As Integer = 3
+	Public Const CALC_AIR As Integer = 4
+	Public Const CALC_FIFTYTHREE As Integer = 6
+	
+	' New style route types
+	Public Const CALCEX_TYPE_PRACTICAL As Integer = 1
+	Public Const CALCEX_TYPE_SHORTEST As Integer = 2
+	Public Const CALCEX_TYPE_AIR As Integer = 4
+	Public Const CALCEX_OPT_AVOIDTOLL As Integer = 256
+	Public Const CALCEX_OPT_NATIONAL As Integer = 512
+	Public Const CALCEX_OPT_FIFTYTHREE As Integer = 1024
+	Public Const CALCEX_VEH_TRUCK As Integer = 0
+	Public Const CALCEX_VEH_AUTO As Integer = 16777216
+	
+	' Report types
+	Public Const RPT_DETAIL As Integer = 0
+	Public Const RPT_STATE As Integer = 1
+	Public Const RPT_MILEAGE As Integer = 2
+	Public Const RPT_XML As Integer = 3
+	
+	' Toll Mode types
+	Public Const TOLL_NONE As Integer = 0
+	Public Const TOLL_CASH As Integer = 1
+	Public Const TOLL_DISCOUNT As Integer = 2
+	
+	' Order of states in reports
+	Public Const STATE_ORDER As Integer = 1
+	Public Const TRIP_ORDER As Integer = 2
+	
+	' Option bits
+	Public Const OPTS_NONE As Integer = &H0
+	Public Const OPTS_MILES As Integer = &H1
+	Public Const OPTS_CHANGEDEST As Integer = &H2
+	Public Const OPTS_HUBMODE As Integer = &H4
+	Public Const OPTS_BORDERS As Integer = &H8
+	Public Const OPTS_ALPHAORDER As Integer = &H10
+	Public Const OPTS_HEAVY As Integer = &H20
+	Public Const OPTS_ERROR As Integer = &HFFFF
+	
+	' Error numbers
+	Public Const PCMS_INVALIDPTR As Integer = 101
+	Public Const PCMS_NOINIFILE As Integer = 102
+	Public Const PCMS_LOADINIFILE As Integer = 103
+	Public Const PCMS_LOADGEOCODE As Integer = 104
+	Public Const PCMS_LOADNETWORK As Integer = 105
+	Public Const PCMS_MAXTRIPS As Integer = 106
+	Public Const PCMS_INVALIDTRIP As Integer = 107
+	Public Const PCMS_INVALIDSERVER As Integer = 108
+	Public Const PCMS_BADROOTDIR As Integer = 109
+	Public Const PCMS_BADMETANETDIR As Integer = 110
+	Public Const PCMS_NOLICENSE As Integer = 111
+	Public Const PCMS_TRIPNOTREADY As Integer = 112
+	Public Const PCMS_INVALIDPLACE As Integer = 113
+	Public Const PCMS_ROUTINGERROR As Integer = 114
+	Public Const PCMS_OPTERROR As Integer = 115
+	Public Const PCMS_OPTHUB As Integer = 116
+	Public Const PCMS_OPT2STOPS As Integer = 117
+	Public Const PCMS_OPT3STOPS As Integer = 118
+	Public Const PCMS_NOTENOUGHSTOPS As Integer = 119
+	Public Const PCMS_BADNETDIR As Integer = 120
+	Public Const PCMS_LOADGRIDNET As Integer = 121
+	Public Const PCMS_BADOPTIONDIR As Integer = 122
+	Public Const PCMS_DISCONNECTEDNET As Integer = 123
+	Public Const PCMS_NOTRUCKSTOP As Integer = 124
+	Public Const PCMS_INVALIDREGIONID As Integer = 125
+	Public Const PCMS_CLOSINGERROR As Integer = 126
+	Public Const PCMS_NORTENGINE As Integer = 127
+	Public Const PCMS_NODATASERVER As Integer = 128
+	Public Const PCMS_NOACTIVATE As Integer = 135
+	Public Const PCMS_EXPIRED As Integer = 136
+	Public Const PCMS_BADDLLPATH As Integer = 137
+	
+	
+	' Convert a 'C' string to a Basic string by resizing it
+	' wherever the '\0' character is.
+	'
+	Function CToBas(ByRef s$) As String
+		CToBas = Left(s, PCMSStrLen(s))
+	End Function
+End Module

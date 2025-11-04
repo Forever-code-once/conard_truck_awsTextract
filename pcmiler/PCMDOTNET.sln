@@ -1,0 +1,40 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCMDLLINT", "PCMDLLINT\PCMDLLINT.csproj", "{4D71A3C4-F247-4C40-AC9C-8B722A60154E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpTestPCM", "CSharp\CSharpTestPCM.csproj", "{3F27274B-117F-4860-80F4-D72CFE2D21FE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VBTest", "VB.Net\VBTest.vbproj", "{327F2D75-21D4-4436-9846-2974EF5C7586}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{4D71A3C4-F247-4C40-AC9C-8B722A60154E}.Debug.ActiveCfg = Debug|.NET
+		{4D71A3C4-F247-4C40-AC9C-8B722A60154E}.Debug.Build.0 = Debug|.NET
+		{4D71A3C4-F247-4C40-AC9C-8B722A60154E}.Release.ActiveCfg = Release|.NET
+		{4D71A3C4-F247-4C40-AC9C-8B722A60154E}.Release.Build.0 = Release|.NET
+		{3F27274B-117F-4860-80F4-D72CFE2D21FE}.Debug.ActiveCfg = Debug|.NET
+		{3F27274B-117F-4860-80F4-D72CFE2D21FE}.Debug.Build.0 = Debug|.NET
+		{3F27274B-117F-4860-80F4-D72CFE2D21FE}.Release.ActiveCfg = Release|.NET
+		{3F27274B-117F-4860-80F4-D72CFE2D21FE}.Release.Build.0 = Release|.NET
+		{327F2D75-21D4-4436-9846-2974EF5C7586}.Debug.ActiveCfg = Debug|.NET
+		{327F2D75-21D4-4436-9846-2974EF5C7586}.Debug.Build.0 = Debug|.NET
+		{327F2D75-21D4-4436-9846-2974EF5C7586}.Release.ActiveCfg = Release|.NET
+		{327F2D75-21D4-4436-9846-2974EF5C7586}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
